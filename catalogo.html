@@ -86,7 +86,18 @@
 
         .product-img-wrapper {
             width: 100%;
-            height: 180px;
+            height: 200px;
+            background: #f0f0f0;
+            overflow: hidden;
+        }
+
+        .product-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-img-wrapper.emoji {
             background: linear-gradient(135deg, var(--naranja-primary), var(--rojo-primary));
             display: flex;
             align-items: center;
@@ -170,7 +181,9 @@
             <div class="product-grid">
                 <!-- Pizza Pepperoni -->
                 <div class="product-card-compact">
-                    <div class="product-img-wrapper">🍕</div>
+                    <div class="product-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&h=400&fit=crop" alt="Pizza Pepperoni">
+                    </div>
                     <div class="product-details">
                         <h3 class="product-name-compact">Pizza Pepperoni</h3>
                         <p class="product-desc-compact">Deliciosa pizza con pepperoni de primera calidad y queso mozzarella</p>
@@ -184,7 +197,9 @@
 
                 <!-- Pizza Margarita -->
                 <div class="product-card-compact">
-                    <div class="product-img-wrapper">🍕</div>
+                    <div class="product-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500&h=400&fit=crop" alt="Pizza Margarita">
+                    </div>
                     <div class="product-details">
                         <h3 class="product-name-compact">Pizza Margarita</h3>
                         <p class="product-desc-compact">La clásica pizza italiana con ingredientes frescos y naturales</p>
@@ -198,7 +213,9 @@
 
                 <!-- Pizza Hawaiana -->
                 <div class="product-card-compact">
-                    <div class="product-img-wrapper">🍕</div>
+                    <div class="product-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&h=400&fit=crop" alt="Pizza Hawaiana">
+                    </div>
                     <div class="product-details">
                         <h3 class="product-name-compact">Pizza Hawaiana</h3>
                         <p class="product-desc-compact">La combinación perfecta de jamón y piña con queso derretido</p>
@@ -212,7 +229,9 @@
 
                 <!-- Pizza Vegetariana -->
                 <div class="product-card-compact">
-                    <div class="product-img-wrapper">🍕</div>
+                    <div class="product-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1511689660979-10d2b1aada49?w=500&h=400&fit=crop" alt="Pizza Vegetariana">
+                    </div>
                     <div class="product-details">
                         <h3 class="product-name-compact">Pizza Vegetariana</h3>
                         <p class="product-desc-compact">Pizza llena de vegetales frescos y queso mozzarella</p>
@@ -231,7 +250,7 @@
             <div class="product-grid">
                 <!-- Alitas BBQ -->
                 <div class="product-card-compact">
-                    <div class="product-img-wrapper" style="background: linear-gradient(135deg, #F4A460, #D2691E);">🍗</div>
+                    <div class="product-img-wrapper emoji" style="background: linear-gradient(135deg, #F4A460, #D2691E);">🍗</div>
                     <div class="product-details">
                         <h3 class="product-name-compact">Alitas BBQ</h3>
                         <p class="product-desc-compact">10 alitas de pollo con salsa BBQ</p>
@@ -245,7 +264,7 @@
 
                 <!-- Dedos de Queso -->
                 <div class="product-card-compact">
-                    <div class="product-img-wrapper" style="background: linear-gradient(135deg, #FFD700, #FFA500);">🧀</div>
+                    <div class="product-img-wrapper emoji" style="background: linear-gradient(135deg, #FFD700, #FFA500);">🧀</div>
                     <div class="product-details">
                         <h3 class="product-name-compact">Dedos de Queso</h3>
                         <p class="product-desc-compact">8 dedos de queso mozzarella empanizados</p>
@@ -259,7 +278,7 @@
 
                 <!-- Pan de Ajo -->
                 <div class="product-card-compact">
-                    <div class="product-img-wrapper" style="background: linear-gradient(135deg, #DEB887, #8B4513);">🥖</div>
+                    <div class="product-img-wrapper emoji" style="background: linear-gradient(135deg, #DEB887, #8B4513);">🥖</div>
                     <div class="product-details">
                         <h3 class="product-name-compact">Pan de Ajo</h3>
                         <p class="product-desc-compact">Pan de ajo recién horneado con mantequilla</p>
@@ -278,7 +297,7 @@
             <div class="product-grid">
                 <!-- Refresco 1L -->
                 <div class="product-card-compact">
-                    <div class="product-img-wrapper" style="background: linear-gradient(135deg, #DC143C, #8B0000);">🥤</div>
+                    <div class="product-img-wrapper emoji" style="background: linear-gradient(135deg, #DC143C, #8B0000);">🥤</div>
                     <div class="product-details">
                         <h3 class="product-name-compact">Refresco 1L</h3>
                         <p class="product-desc-compact">Refresco de 1 litro a elegir</p>
@@ -292,7 +311,7 @@
 
                 <!-- Agua Mineral -->
                 <div class="product-card-compact">
-                    <div class="product-img-wrapper" style="background: linear-gradient(135deg, #4682B4, #1E90FF);">💧</div>
+                    <div class="product-img-wrapper emoji" style="background: linear-gradient(135deg, #4682B4, #1E90FF);">💧</div>
                     <div class="product-details">
                         <h3 class="product-name-compact">Agua Mineral 600ml</h3>
                         <p class="product-desc-compact">Agua mineral natural</p>
@@ -306,7 +325,7 @@
 
                 <!-- Cerveza -->
                 <div class="product-card-compact">
-                    <div class="product-img-wrapper" style="background: linear-gradient(135deg, #DAA520, #B8860B);">🍺</div>
+                    <div class="product-img-wrapper emoji" style="background: linear-gradient(135deg, #DAA520, #B8860B);">🍺</div>
                     <div class="product-details">
                         <h3 class="product-name-compact">Cerveza</h3>
                         <p class="product-desc-compact">Cerveza fría 355ml</p>
@@ -325,7 +344,7 @@
             <div class="product-grid">
                 <!-- Combo Familiar -->
                 <div class="product-card-compact">
-                    <div class="product-img-wrapper" style="background: linear-gradient(135deg, #FFD700, #FFA500);">🎁</div>
+                    <div class="product-img-wrapper emoji" style="background: linear-gradient(135deg, #FFD700, #FFA500);">🎁</div>
                     <div class="product-details">
                         <span style="background: var(--rojo-primary); color: white; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">AHORRA 30%</span>
                         <h3 class="product-name-compact" style="margin-top: 0.5rem;">Combo Familiar</h3>
@@ -340,7 +359,7 @@
 
                 <!-- Combo Individual -->
                 <div class="product-card-compact">
-                    <div class="product-img-wrapper" style="background: linear-gradient(135deg, #FFD700, #FFA500);">🎁</div>
+                    <div class="product-img-wrapper emoji" style="background: linear-gradient(135deg, #FFD700, #FFA500);">🎁</div>
                     <div class="product-details">
                         <span style="background: var(--rojo-primary); color: white; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">AHORRA 20%</span>
                         <h3 class="product-name-compact" style="margin-top: 0.5rem;">Combo Individual</h3>
