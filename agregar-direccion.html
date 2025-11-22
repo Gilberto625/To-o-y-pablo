@@ -6,31 +6,196 @@
     <title>PizzaMya - Agregar Dirección</title>
     <link rel="stylesheet" href="css/styles.css">
     <style>
-        .direccion-container {
-            max-width: 900px;
-            margin: 2rem auto;
+        .direccion-wrapper {
+            background: var(--gris-claro);
+            min-height: 100vh;
+            padding-bottom: 3rem;
         }
 
-        .direccion-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
+        .volver-btn {
+            max-width: 450px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem 0 2rem;
         }
 
-        .direccion-form {
+        .volver-link {
+            color: var(--naranja-primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.95rem;
+        }
+
+        .volver-link:hover {
+            opacity: 0.8;
+        }
+
+        .direccion-form-container {
+            max-width: 450px;
+            margin: 1.5rem auto;
             background: white;
-            padding: 3rem;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--negro);
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group-direccion {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group-direccion label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+            color: var(--negro);
+            font-size: 0.9rem;
+        }
+
+        .form-group-direccion label.required::after {
+            content: " *";
+            color: var(--rojo-primary);
+        }
+
+        .form-group-direccion input,
+        .form-group-direccion select,
+        .form-group-direccion textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+            background: var(--gris-claro);
+        }
+
+        .form-group-direccion input::placeholder,
+        .form-group-direccion textarea::placeholder {
+            color: #999;
+        }
+
+        .form-group-direccion input:focus,
+        .form-group-direccion select:focus,
+        .form-group-direccion textarea:focus {
+            outline: none;
+            border-color: var(--naranja-primary);
+            background: white;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1.2rem 0;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            font-weight: normal;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .form-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn-cancelar {
+            padding: 0.85rem 1.5rem;
+            background: white;
+            color: #666;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-cancelar:hover {
+            background: var(--gris-claro);
+            border-color: #999;
+        }
+
+        .btn-guardar {
+            padding: 0.85rem 1.5rem;
+            background: var(--naranja-primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-guardar:hover {
+            background: #e55505;
+            transform: translateY(-2px);
+        }
+
+        .consejos-container {
+            max-width: 450px;
+            margin: 1.5rem auto;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .consejos-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--negro);
+            margin-bottom: 1rem;
+        }
+
+        .consejo-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            margin-bottom: 0.8rem;
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .consejo-item::before {
+            content: "✓";
+            color: var(--naranja-primary);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
-<body>
+<body class="direccion-wrapper">
     <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">
@@ -47,132 +212,130 @@
         </div>
     </nav>
 
-    <div class="direccion-container">
-        <div style="margin-bottom: 2rem;">
-            <a href="perfil.html" style="color: var(--naranja-primary); text-decoration: none; font-weight: 600;">← Volver al Perfil</a>
-        </div>
+    <!-- Botón Volver -->
+    <div class="volver-btn">
+        <a href="perfil.html" class="volver-link">← Volver</a>
+    </div>
 
-        <h1 style="margin-bottom: 2rem; color: var(--negro);">📍 Mis Direcciones</h1>
+    <!-- Formulario de Dirección -->
+    <div class="direccion-form-container">
+        <h2 class="form-title">Agregar Nueva Dirección</h2>
 
-        <!-- Lista de Direcciones Guardadas -->
-        <div id="listaDirecciones">
-            <div class="direccion-card">
-                <div style="flex: 1;">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                        <h3 style="color: var(--negro);">Casa</h3>
-                        <span style="background: var(--naranja-primary); color: white; padding: 0.2rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">Principal</span>
-                    </div>
-                    <p style="color: #666; line-height: 1.6;">
-                        Calle Principal #123<br>
-                        Col. Centro, Ciudad de México<br>
-                        C.P. 12345
-                    </p>
+        <form id="agregarDireccionForm">
+            <!-- Calle -->
+            <div class="form-group-direccion">
+                <label for="calle" class="required">Calle</label>
+                <input type="text" id="calle" name="calle" placeholder="Nombre de la calle" required>
+            </div>
+
+            <!-- Número y Colonia -->
+            <div class="form-row">
+                <div class="form-group-direccion">
+                    <label for="numero" class="required">Número</label>
+                    <input type="text" id="numero" name="numero" placeholder="Número externo/interior" required>
                 </div>
-                <div style="display: flex; gap: 0.5rem;">
-                    <button class="btn btn-outline" style="padding: 0.5rem 1rem;">✏️</button>
-                    <button class="btn btn-secondary" style="padding: 0.5rem 1rem;">🗑️</button>
+
+                <div class="form-group-direccion">
+                    <label for="colonia" class="required">Colonia</label>
+                    <input type="text" id="colonia" name="colonia" placeholder="Colonia o fraccionamiento" required>
                 </div>
             </div>
 
-            <div class="direccion-card">
-                <div style="flex: 1;">
-                    <h3 style="color: var(--negro); margin-bottom: 0.5rem;">Oficina</h3>
-                    <p style="color: #666; line-height: 1.6;">
-                        Av. Reforma #456<br>
-                        Col. Juárez, Ciudad de México<br>
-                        C.P. 67890
-                    </p>
+            <!-- Ciudad y Estado -->
+            <div class="form-row">
+                <div class="form-group-direccion">
+                    <label for="ciudad" class="required">Ciudad</label>
+                    <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad" required>
                 </div>
-                <div style="display: flex; gap: 0.5rem;">
-                    <button class="btn btn-outline" style="padding: 0.5rem 1rem;">✏️</button>
-                    <button class="btn btn-secondary" style="padding: 0.5rem 1rem;">🗑️</button>
+
+                <div class="form-group-direccion">
+                    <label for="estado" class="required">Estado</label>
+                    <select id="estado" name="estado" required>
+                        <option value="">Estado</option>
+                        <option value="Aguascalientes">Aguascalientes</option>
+                        <option value="Baja California">Baja California</option>
+                        <option value="Baja California Sur">Baja California Sur</option>
+                        <option value="Campeche">Campeche</option>
+                        <option value="Chiapas">Chiapas</option>
+                        <option value="Chihuahua">Chihuahua</option>
+                        <option value="CDMX">Ciudad de México</option>
+                        <option value="Coahuila">Coahuila</option>
+                        <option value="Colima">Colima</option>
+                        <option value="Durango">Durango</option>
+                        <option value="Guanajuato">Guanajuato</option>
+                        <option value="Guerrero">Guerrero</option>
+                        <option value="Hidalgo">Hidalgo</option>
+                        <option value="Jalisco">Jalisco</option>
+                        <option value="México">México</option>
+                        <option value="Michoacán">Michoacán</option>
+                        <option value="Morelos">Morelos</option>
+                        <option value="Nayarit">Nayarit</option>
+                        <option value="Nuevo León">Nuevo León</option>
+                        <option value="Oaxaca">Oaxaca</option>
+                        <option value="Puebla">Puebla</option>
+                        <option value="Querétaro">Querétaro</option>
+                        <option value="Quintana Roo">Quintana Roo</option>
+                        <option value="San Luis Potosí">San Luis Potosí</option>
+                        <option value="Sinaloa">Sinaloa</option>
+                        <option value="Sonora">Sonora</option>
+                        <option value="Tabasco">Tabasco</option>
+                        <option value="Tamaulipas">Tamaulipas</option>
+                        <option value="Tlaxcala">Tlaxcala</option>
+                        <option value="Veracruz">Veracruz</option>
+                        <option value="Yucatán">Yucatán</option>
+                        <option value="Zacatecas">Zacatecas</option>
+                    </select>
                 </div>
             </div>
-        </div>
 
-        <!-- Formulario para Agregar Nueva Dirección -->
-        <div class="direccion-form">
-            <h2 style="margin-bottom: 2rem; color: var(--negro); text-align: center;">Agregar Nueva Dirección</h2>
-
-            <form id="agregarDireccionForm">
-                <div class="form-group">
-                    <label for="etiqueta">Etiqueta de la Dirección</label>
-                    <input type="text" id="etiqueta" name="etiqueta" placeholder="Ej: Casa, Oficina, Casa de Mamá" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="calle">Calle y Número</label>
-                    <input type="text" id="calle" name="calle" placeholder="Ej: Calle Principal #123" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="colonia">Colonia</label>
-                    <input type="text" id="colonia" name="colonia" placeholder="Ej: Centro" required>
-                </div>
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                    <div class="form-group">
-                        <label for="ciudad">Ciudad</label>
-                        <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad de México" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="estado">Estado</label>
-                        <select id="estado" name="estado" required>
-                            <option value="">Selecciona un estado</option>
-                            <option value="CDMX">Ciudad de México</option>
-                            <option value="Aguascalientes">Aguascalientes</option>
-                            <option value="Baja California">Baja California</option>
-                            <option value="Chihuahua">Chihuahua</option>
-                            <option value="Jalisco">Jalisco</option>
-                            <option value="Nuevo León">Nuevo León</option>
-                            <!-- Agregar más estados según sea necesario -->
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="codigoPostal">Código Postal</label>
-                    <input type="text" id="codigoPostal" name="codigoPostal" placeholder="12345" maxlength="5" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="referencias">Referencias (Opcional)</label>
-                    <textarea id="referencias" name="referencias" rows="3" placeholder="Ej: Casa de color blanco, portón negro, entre la tienda y la farmacia"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="telefono">Teléfono de Contacto</label>
-                    <input type="tel" id="telefono" name="telefono" placeholder="(555) 123-4567" required>
-                </div>
-
-                <div class="form-group">
-                    <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                        <input type="checkbox" id="principal" name="principal">
-                        <span style="font-weight: normal;">Establecer como dirección principal</span>
-                    </label>
-                </div>
-
-                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
-                    <button type="submit" class="btn btn-primary" style="flex: 1; padding: 1rem;">
-                        Guardar Dirección
-                    </button>
-                    <button type="button" class="btn btn-outline" onclick="limpiarFormulario()" style="flex: 1; padding: 1rem;">
-                        Limpiar
-                    </button>
-                </div>
-            </form>
-        </div>
-
-        <!-- Mapa (Placeholder) -->
-        <div style="background: white; padding: 2rem; border-radius: 15px; margin-top: 2rem; text-align: center;">
-            <h3 style="margin-bottom: 1rem; color: var(--negro);">📍 Ubicación en el Mapa</h3>
-            <div style="background: var(--gris-claro); height: 300px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #666;">
-                Mapa interactivo (integración con Google Maps)
+            <!-- Código Postal -->
+            <div class="form-group-direccion">
+                <label for="codigoPostal" class="required">Código Postal</label>
+                <input type="text" id="codigoPostal" name="codigoPostal" placeholder="00000" maxlength="5" required>
             </div>
-            <p style="color: #666; margin-top: 1rem; font-size: 0.9rem;">
-                Arrastra el marcador para ajustar la ubicación exacta
-            </p>
+
+            <!-- Referencias -->
+            <div class="form-group-direccion">
+                <label for="referencias">Referencias (opcional)</label>
+                <textarea id="referencias" name="referencias" rows="3" placeholder="Ejemplo: Casa de dos pisos, portón gris, entre la tienda y la farmacia"></textarea>
+            </div>
+
+            <!-- Checkbox Dirección Predeterminada -->
+            <div class="checkbox-group">
+                <input type="checkbox" id="principal" name="principal">
+                <label for="principal">Establecer como dirección predeterminada</label>
+            </div>
+
+            <!-- Botones -->
+            <div class="form-buttons">
+                <button type="button" class="btn-cancelar" onclick="window.location.href='perfil.html'">
+                    Cancelar
+                </button>
+                <button type="submit" class="btn-guardar">
+                    Guardar Dirección
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Consejos para entrega exitosa -->
+    <div class="consejos-container">
+        <h3 class="consejos-title">Consejos para una entrega exitosa</h3>
+
+        <div class="consejo-item">
+            Asegúrate de incluir referencias claras para facilitar la ubicación
+        </div>
+
+        <div class="consejo-item">
+            Verifica que el código postal sea correcto
+        </div>
+
+        <div class="consejo-item">
+            Indica si hay algún punto de referencia cerca (tienda, escuela, parque)
+        </div>
+
+        <div class="consejo-item">
+            Menciona el color de tu casa o edificio si es posible
         </div>
     </div>
 
@@ -180,26 +343,54 @@
         document.getElementById('agregarDireccionForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
-            const etiqueta = document.getElementById('etiqueta').value;
             const calle = document.getElementById('calle').value;
+            const numero = document.getElementById('numero').value;
             const colonia = document.getElementById('colonia').value;
             const ciudad = document.getElementById('ciudad').value;
             const estado = document.getElementById('estado').value;
             const codigoPostal = document.getElementById('codigoPostal').value;
             const referencias = document.getElementById('referencias').value;
-            const telefono = document.getElementById('telefono').value;
             const principal = document.getElementById('principal').checked;
 
-            // Aquí se guardaría la dirección en localStorage o se enviaría al servidor
-            alert('Dirección guardada exitosamente');
+            // Validar código postal (5 dígitos)
+            if (!/^\d{5}$/.test(codigoPostal)) {
+                alert('Por favor ingresa un código postal válido de 5 dígitos');
+                return;
+            }
 
-            // Limpiar formulario
-            limpiarFormulario();
+            // Crear objeto de dirección
+            const direccion = {
+                id: Date.now(),
+                calle,
+                numero,
+                colonia,
+                ciudad,
+                estado,
+                codigoPostal,
+                referencias,
+                principal,
+                direccionCompleta: `${calle} ${numero}, ${colonia}, ${ciudad}, ${estado}, CP ${codigoPostal}`
+            };
+
+            // Guardar en localStorage
+            let direcciones = JSON.parse(localStorage.getItem('direcciones') || '[]');
+
+            // Si se marca como principal, quitar ese flag de las demás
+            if (principal) {
+                direcciones = direcciones.map(d => ({...d, principal: false}));
+            }
+
+            direcciones.push(direccion);
+            localStorage.setItem('direcciones', JSON.stringify(direcciones));
+
+            alert('Dirección guardada exitosamente');
+            window.location.href = 'perfil.html';
         });
 
-        function limpiarFormulario() {
-            document.getElementById('agregarDireccionForm').reset();
-        }
+        // Validación en tiempo real del código postal
+        document.getElementById('codigoPostal').addEventListener('input', function(e) {
+            this.value = this.value.replace(/\D/g, '');
+        });
     </script>
 </body>
 </html>

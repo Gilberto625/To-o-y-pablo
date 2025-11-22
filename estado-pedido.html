@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PizzaMya - Estado del Pedido</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .estado-pedido-wrapper {
+            background: var(--gris-claro);
+            min-height: 100vh;
+            padding-bottom: 3rem;
+        }
+
+        .volver-section {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem 0 2rem;
+        }
+
+        .volver-link {
+            color: var(--negro);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.95rem;
+        }
+
+        .volver-link:hover {
+            color: var(--naranja-primary);
+        }
+
+        .estado-container {
+            max-width: 700px;
+            margin: 1.5rem auto;
+            padding: 0 2rem;
+        }
+
+        .pedido-id {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--negro);
+            margin-bottom: 0.3rem;
+        }
+
+        .pedido-subtitle {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        /* Progress Tracker */
+        .progress-tracker {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .progress-line {
+            position: absolute;
+            top: 25px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #e0e0e0;
+            z-index: 1;
+        }
+
+        .progress-line-filled {
+            position: absolute;
+            top: 25px;
+            left: 0;
+            height: 4px;
+            background: var(--naranja-primary);
+            z-index: 2;
+            transition: width 0.5s ease;
+        }
+
+        .progress-step {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 3;
+        }
+
+        .step-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s;
+        }
+
+        .progress-step.active .step-icon,
+        .progress-step.completed .step-icon {
+            background: var(--naranja-primary);
+            color: white;
+        }
+
+        .progress-step.pending .step-icon {
+            background: #e0e0e0;
+            color: #999;
+        }
+
+        .step-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #999;
+            text-align: center;
+            max-width: 100px;
+        }
+
+        .progress-step.active .step-label,
+        .progress-step.completed .step-label {
+            color: var(--negro);
+        }
+
+        /* Detalles del Pedido */
+        .detalles-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .detalles-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--negro);
+            margin-bottom: 1.5rem;
+        }
+
+        .producto-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .producto-item:last-child {
+            border-bottom: none;
+        }
+
+        .producto-nombre {
+            color: var(--negro);
+            font-weight: 500;
+        }
+
+        .producto-precio {
+            color: var(--rojo-primary);
+            font-weight: 700;
+        }
+
+        .total-section {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 1rem;
+            border-top: 2px solid #e0e0e0;
+            margin-top: 1rem;
+        }
+
+        .total-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--negro);
+        }
+
+        .total-precio {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--rojo-primary);
+        }
+
+        /* Información de Entrega */
+        .info-item-estado {
+            margin-bottom: 1.2rem;
+        }
+
+        .info-label-estado {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 0.4rem;
+        }
+
+        .info-value-estado {
+            color: var(--negro);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Botones de Ayuda */
+        .ayuda-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .ayuda-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--negro);
+            margin-bottom: 0.5rem;
+        }
+
+        .ayuda-subtitle {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .ayuda-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .btn-ayuda {
+            padding: 1rem;
+            background: white;
+            color: var(--naranja-primary);
+            border: 2px solid var(--naranja-primary);
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .btn-ayuda:hover {
+            background: var(--naranja-primary);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .progress-steps {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+            }
+
+            .step-label {
+                font-size: 0.75rem;
+                max-width: 80px;
+            }
+
+            .step-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+
+            .ayuda-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="estado-pedido-wrapper">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <h1>pizza<span style="color: var(--rojo-primary);">M</span>ya</h1>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html">Menú</a></li>
+            <li><a href="ordena.html">Ordena</a></li>
+            <li><a href="mi-pedido.html">Mi pedido</a></li>
+            <li><a href="combos.html">Combos</a></li>
+        </ul>
+        <div class="user-section">
+            <button class="btn-user" onclick="window.location.href='perfil.html'">👤 Mi Cuenta</button>
+        </div>
+    </nav>
+
+    <!-- Botón Volver -->
+    <div class="volver-section">
+        <a href="perfil.html" class="volver-link">← Volver</a>
+    </div>
+
+    <!-- Contenido Principal -->
+    <div class="estado-container">
+        <h1 class="pedido-id">Estado del Pedido</h1>
+        <p class="pedido-subtitle" id="pedidoNumero">Pedido #order-1783784010955</p>
+
+        <!-- Progress Tracker -->
+        <div class="progress-tracker">
+            <div class="progress-steps">
+                <div class="progress-line"></div>
+                <div class="progress-line-filled" id="progressLine"></div>
+
+                <div class="progress-step active" id="step-recibido">
+                    <div class="step-icon">⏱️</div>
+                    <div class="step-label">Pedido Recibido</div>
+                </div>
+
+                <div class="progress-step pending" id="step-preparacion">
+                    <div class="step-icon">📦</div>
+                    <div class="step-label">En Preparación</div>
+                </div>
+
+                <div class="progress-step pending" id="step-camino">
+                    <div class="step-icon">🚚</div>
+                    <div class="step-label">En Camino</div>
+                </div>
+
+                <div class="progress-step pending" id="step-entregado">
+                    <div class="step-icon">✓</div>
+                    <div class="step-label">Entregado</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detalles del Pedido -->
+        <div class="detalles-card">
+            <h2 class="detalles-title">Detalles del Pedido</h2>
+
+            <div id="productosLista">
+                <div class="producto-item">
+                    <span class="producto-nombre">2x Pizza Pepperoni</span>
+                    <span class="producto-precio">$378</span>
+                </div>
+            </div>
+
+            <div class="total-section">
+                <span class="total-label">Total</span>
+                <span class="total-precio" id="totalPedido">$378</span>
+            </div>
+        </div>
+
+        <!-- Información de Entrega -->
+        <div class="detalles-card">
+            <h2 class="detalles-title">Información de Entrega</h2>
+
+            <div class="info-item-estado">
+                <div class="info-label-estado">Dirección</div>
+                <div class="info-value-estado" id="direccionEntrega">
+                    calle hidalgo 34<br>
+                    Virulla, huejutla<br>
+                    HIDALGO - CP 43011
+                </div>
+            </div>
+
+            <div class="info-item-estado">
+                <div class="info-label-estado">Tiempo estimado de entrega</div>
+                <div class="info-value-estado" id="tiempoEstimado">10:45 p.m.</div>
+            </div>
+
+            <div class="info-item-estado">
+                <div class="info-label-estado">Fecha del pedido</div>
+                <div class="info-value-estado" id="fechaPedido">21 de noviembre de 2025, 10:00 p.m.</div>
+            </div>
+        </div>
+
+        <!-- ¿Necesitas ayuda? -->
+        <div class="ayuda-section">
+            <h3 class="ayuda-title">¿Necesitas ayuda?</h3>
+            <p class="ayuda-subtitle">Si tienes alguna duda o problema con tu pedido, contáctanos</p>
+
+            <div class="ayuda-buttons">
+                <button class="btn-ayuda" onclick="llamarRestaurante()">
+                    Llamar al restaurante
+                </button>
+                <button class="btn-ayuda" onclick="abrirChat()">
+                    Chat de soporte
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Obtener ID del pedido de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const pedidoId = urlParams.get('id');
+
+        function cargarEstadoPedido() {
+            // Cargar datos del pedido desde localStorage
+            const pedidos = JSON.parse(localStorage.getItem('pedidos') || '[]');
+            let pedido = pedidos.find(p => p.id == pedidoId);
+
+            // Si no existe, usar datos de ejemplo
+            if (!pedido) {
+                pedido = {
+                    id: '1783784010955',
+                    fecha: '21 de noviembre de 2025, 10:00 p.m.',
+                    estado: 'Pendiente',
+                    productos: [
+                        { nombre: 'Pizza Pepperoni', cantidad: 2, precio: 189 }
+                    ],
+                    total: 378,
+                    direccion: 'calle hidalgo 34, Virulla, huejutla, HIDALGO - CP 43011',
+                    tiempoEstimado: '10:45 p.m.',
+                    estadoActual: 'recibido' // recibido, preparacion, camino, entregado
+                };
+            }
+
+            // Actualizar información en la página
+            document.getElementById('pedidoNumero').textContent = `Pedido #order-${pedido.id}`;
+            document.getElementById('totalPedido').textContent = `$${pedido.total}`;
+            document.getElementById('direccionEntrega').innerHTML = pedido.direccion.replace(/, /g, '<br>');
+            document.getElementById('fechaPedido').textContent = pedido.fecha;
+            document.getElementById('tiempoEstimado').textContent = pedido.tiempoEstimado || '10:45 p.m.';
+
+            // Actualizar lista de productos
+            const productosHtml = pedido.productos.map(p => `
+                <div class="producto-item">
+                    <span class="producto-nombre">${p.cantidad}x ${p.nombre}</span>
+                    <span class="producto-precio">$${p.precio * p.cantidad}</span>
+                </div>
+            `).join('');
+            document.getElementById('productosLista').innerHTML = productosHtml;
+
+            // Actualizar estado del progreso
+            actualizarProgreso(pedido.estadoActual || 'recibido');
+        }
+
+        function actualizarProgreso(estado) {
+            const estados = ['recibido', 'preparacion', 'camino', 'entregado'];
+            const estadoActualIndex = estados.indexOf(estado);
+
+            // Calcular el ancho de la barra de progreso
+            const progressPercentage = (estadoActualIndex / (estados.length - 1)) * 100;
+            document.getElementById('progressLine').style.width = progressPercentage + '%';
+
+            // Actualizar estilos de los pasos
+            estados.forEach((est, index) => {
+                const step = document.getElementById(`step-${est}`);
+
+                if (index < estadoActualIndex) {
+                    step.className = 'progress-step completed';
+                } else if (index === estadoActualIndex) {
+                    step.className = 'progress-step active';
+                } else {
+                    step.className = 'progress-step pending';
+                }
+            });
+        }
+
+        function llamarRestaurante() {
+            alert('Llamando al restaurante: (555) 123-4567');
+            // En producción, esto abriría la app de teléfono
+            // window.location.href = 'tel:5551234567';
+        }
+
+        function abrirChat() {
+            alert('Abriendo chat de soporte...');
+            // En producción, esto abriría un widget de chat
+            // Por ejemplo: Intercom, Zendesk, etc.
+        }
+
+        // Simular actualización de estado cada 5 segundos (solo para demostración)
+        let demoEstadoIndex = 0;
+        const demoEstados = ['recibido', 'preparacion', 'camino', 'entregado'];
+
+        function simularActualizacion() {
+            setInterval(() => {
+                if (demoEstadoIndex < demoEstados.length - 1) {
+                    demoEstadoIndex++;
+                    actualizarProgreso(demoEstados[demoEstadoIndex]);
+                }
+            }, 5000);
+        }
+
+        // Cargar al iniciar
+        cargarEstadoPedido();
+        // Descomentar para ver la simulación automática:
+        // simularActualizacion();
+    </script>
+</body>
+</html>

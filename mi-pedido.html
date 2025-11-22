@@ -238,8 +238,8 @@
                                 <span style="font-size: 1.3rem; font-weight: 700; color: var(--rojo-primary); margin-left: 0.5rem;">$${pedido.total}</span>
                             </div>
                             <div style="display: flex; gap: 0.5rem;">
-                                <button class="btn btn-outline" onclick="window.location.href='pedido.html?id=${pedido.id}'" style="padding: 0.5rem 1.5rem;">
-                                    Ver Detalles
+                                <button class="btn btn-outline" onclick="window.location.href='estado-pedido.html?id=${pedido.id}'" style="padding: 0.5rem 1.5rem;">
+                                    Ver Estado
                                 </button>
                                 ${pedido.estado === 'entregado' ? `
                                     <button class="btn btn-primary" onclick="volverAPedir(${pedido.id})" style="padding: 0.5rem 1.5rem;">
