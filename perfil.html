@@ -6,83 +6,199 @@
     <title>PizzaMya - Mi Perfil</title>
     <link rel="stylesheet" href="css/styles.css">
     <style>
-        .perfil-container {
-            max-width: 900px;
-            margin: 2rem auto;
+        .perfil-wrapper {
+            background: var(--gris-claro);
+            min-height: 100vh;
         }
 
         .perfil-header {
-            background: linear-gradient(135deg, var(--naranja-primary), var(--rojo-primary));
-            color: white;
-            padding: 3rem 2rem;
-            border-radius: 15px;
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .avatar {
-            width: 120px;
-            height: 120px;
             background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            margin: 0 auto 1rem;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .perfil-section {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .info-row {
+            padding: 1.5rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #e0e0e0;
         }
 
-        .info-row:last-child {
-            border-bottom: none;
+        .perfil-title-section h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--negro);
+            margin-bottom: 0.3rem;
+        }
+
+        .perfil-title-section p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .btn-cerrar-sesion {
+            padding: 0.7rem 1.5rem;
+            background: white;
+            color: var(--rojo-primary);
+            border: 2px solid var(--rojo-primary);
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-cerrar-sesion:hover {
+            background: var(--rojo-primary);
+            color: white;
+        }
+
+        .tabs-container {
+            background: white;
+            padding: 0 2rem;
+            display: flex;
+            gap: 2rem;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tab-perfil {
+            padding: 1rem 0;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-perfil:hover {
+            color: var(--negro);
+        }
+
+        .tab-perfil.active {
+            color: var(--negro);
+            border-bottom-color: var(--naranja-primary);
+        }
+
+        .tab-content-perfil {
+            display: none;
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .tab-content-perfil.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.5rem;
+        }
+
+        .info-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--negro);
+        }
+
+        .btn-editar {
+            padding: 0.5rem 1.2rem;
+            background: white;
+            color: var(--naranja-primary);
+            border: 2px solid var(--naranja-primary);
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-editar:hover {
+            background: var(--naranja-primary);
+            color: white;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .info-item {
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 1rem;
         }
 
         .info-label {
+            font-size: 0.85rem;
             color: #666;
-            font-weight: 600;
+            margin-bottom: 0.3rem;
         }
 
         .info-value {
+            font-size: 1rem;
             color: var(--negro);
             font-weight: 500;
         }
 
-        .menu-item {
-            padding: 1rem;
-            border-bottom: 1px solid #eee;
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .empty-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            opacity: 0.3;
+        }
+
+        .empty-text {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn-agregar-direccion {
+            margin-top: 1.5rem;
+            padding: 0.8rem 2rem;
+            background: var(--naranja-primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            transition: all 0.3s;
         }
 
-        .menu-item:hover {
-            background: var(--gris-claro);
+        .btn-agregar-direccion:hover {
+            background: #e55505;
+            transform: translateY(-2px);
         }
 
-        .menu-item:last-child {
-            border-bottom: none;
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
-<body>
+<body class="perfil-wrapper">
     <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">
@@ -99,128 +215,142 @@
         </div>
     </nav>
 
-    <div class="perfil-container">
-        <!-- Header del Perfil -->
-        <div class="perfil-header">
-            <div class="avatar">👤</div>
-            <h1 style="font-size: 2rem; margin-bottom: 0.5rem;">Juan Pérez</h1>
-            <p style="opacity: 0.9;">juan.perez@email.com</p>
+    <!-- Header del Perfil -->
+    <div class="perfil-header">
+        <div class="perfil-title-section">
+            <h1>Mi Perfil</h1>
+            <p>Gestiona tu información y pedidos</p>
         </div>
+        <button class="btn-cerrar-sesion" onclick="cerrarSesion()">
+            🚪 Cerrar Sesión
+        </button>
+    </div>
 
-        <!-- Información Personal -->
-        <div class="perfil-section">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-                <h2 style="color: var(--negro);">Información Personal</h2>
-                <button class="btn btn-outline" onclick="window.location.href='editar-perfil.html'" style="padding: 0.5rem 1.5rem;">
-                    ✏️ Editar
-                </button>
-            </div>
+    <!-- Tabs de Navegación -->
+    <div class="tabs-container">
+        <button class="tab-perfil active" onclick="cambiarTabPerfil('perfil')">
+            <span>👤</span> Perfil
+        </button>
+        <button class="tab-perfil" onclick="cambiarTabPerfil('pedidos')">
+            <span>📦</span> Pedidos
+        </button>
+        <button class="tab-perfil" onclick="cambiarTabPerfil('direcciones')">
+            <span>📍</span> Direcciones
+        </button>
+    </div>
 
-            <div class="info-row">
-                <span class="info-label">Nombre completo:</span>
-                <span class="info-value">Juan Pérez García</span>
-            </div>
-
-            <div class="info-row">
-                <span class="info-label">Correo electrónico:</span>
-                <span class="info-value">juan.perez@email.com</span>
-            </div>
-
-            <div class="info-row">
-                <span class="info-label">Teléfono:</span>
-                <span class="info-value">(555) 123-4567</span>
-            </div>
-
-            <div class="info-row">
-                <span class="info-label">Dirección:</span>
-                <span class="info-value">Calle Principal #123, Col. Centro</span>
-            </div>
-        </div>
-
-        <!-- Menú de Opciones -->
-        <div class="perfil-section">
-            <h2 style="color: var(--negro); margin-bottom: 1.5rem;">Opciones de Cuenta</h2>
-
-            <div class="menu-item" onclick="window.location.href='mi-pedido.html'">
-                <div>
-                    <div style="font-weight: 600; margin-bottom: 0.3rem;">📦 Mis Pedidos</div>
-                    <div style="font-size: 0.9rem; color: #666;">Ver historial de pedidos</div>
+    <!-- Contenido de Tabs -->
+    <div>
+        <!-- Tab: Información Personal -->
+        <div id="tab-perfil" class="tab-content-perfil active">
+            <div class="info-card">
+                <div class="info-card-header">
+                    <h2 class="info-card-title">Información Personal</h2>
+                    <button class="btn-editar" onclick="window.location.href='editar-perfil.html'">
+                        Editar
+                    </button>
                 </div>
-                <span>→</span>
-            </div>
 
-            <div class="menu-item" onclick="window.location.href='agregar-direccion.html'">
-                <div>
-                    <div style="font-weight: 600; margin-bottom: 0.3rem;">📍 Direcciones</div>
-                    <div style="font-size: 0.9rem; color: #666;">Gestionar direcciones de entrega</div>
-                </div>
-                <span>→</span>
-            </div>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Nombre(s)</div>
+                        <div class="info-value">Juan Carlos</div>
+                    </div>
 
-            <div class="menu-item" onclick="alert('Próximamente')">
-                <div>
-                    <div style="font-weight: 600; margin-bottom: 0.3rem;">💳 Métodos de Pago</div>
-                    <div style="font-size: 0.9rem; color: #666;">Administrar formas de pago</div>
-                </div>
-                <span>→</span>
-            </div>
+                    <div class="info-item">
+                        <div class="info-label">Apellido Paterno</div>
+                        <div class="info-value">Pérez</div>
+                    </div>
 
-            <div class="menu-item" onclick="alert('Próximamente')">
-                <div>
-                    <div style="font-weight: 600; margin-bottom: 0.3rem;">🎁 Cupones y Ofertas</div>
-                    <div style="font-size: 0.9rem; color: #666;">Ver cupones disponibles</div>
-                </div>
-                <span>→</span>
-            </div>
+                    <div class="info-item">
+                        <div class="info-label">Apellido Materno</div>
+                        <div class="info-value">García</div>
+                    </div>
 
-            <div class="menu-item" onclick="window.location.href='politicas.html'">
-                <div>
-                    <div style="font-weight: 600; margin-bottom: 0.3rem;">🔒 Privacidad</div>
-                    <div style="font-size: 0.9rem; color: #666;">Políticas de privacidad</div>
-                </div>
-                <span>→</span>
-            </div>
+                    <div class="info-item">
+                        <div class="info-label">Teléfono</div>
+                        <div class="info-value">(555) 123-4567</div>
+                    </div>
 
-            <div class="menu-item" onclick="cerrarSesion()">
-                <div>
-                    <div style="font-weight: 600; margin-bottom: 0.3rem; color: var(--rojo-primary);">🚪 Cerrar Sesión</div>
-                    <div style="font-size: 0.9rem; color: #666;">Salir de tu cuenta</div>
+                    <div class="info-item">
+                        <div class="info-label">Correo Electrónico</div>
+                        <div class="info-value">antonio17835@gmail.com</div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-label">Fecha de Nacimiento</div>
+                        <div class="info-value">dd/mm/aaaa</div>
+                    </div>
                 </div>
-                <span>→</span>
             </div>
         </div>
 
-        <!-- Estadísticas -->
-        <div class="perfil-section">
-            <h2 style="color: var(--negro); margin-bottom: 1.5rem;">Mis Estadísticas</h2>
+        <!-- Tab: Pedidos -->
+        <div id="tab-pedidos" class="tab-content-perfil">
+            <div class="info-card">
+                <h2 class="info-card-title">Historial de Pedidos</h2>
 
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center;">
-                <div style="padding: 1.5rem; background: var(--gris-claro); border-radius: 10px;">
-                    <div style="font-size: 2rem; font-weight: 700; color: var(--naranja-primary);">12</div>
-                    <div style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Pedidos</div>
+                <!-- Estado vacío -->
+                <div class="empty-state">
+                    <div class="empty-icon">📦</div>
+                    <div class="empty-text">No tienes pedidos aún</div>
+                    <p style="color: #999; font-size: 0.9rem;">Tus pedidos aparecerán aquí</p>
+                    <button class="btn-agregar-direccion" onclick="window.location.href='pizzas.html'">
+                        Hacer un Pedido
+                    </button>
                 </div>
-                <div style="padding: 1.5rem; background: var(--gris-claro); border-radius: 10px;">
-                    <div style="font-size: 2rem; font-weight: 700; color: var(--rojo-primary);">$2,345</div>
-                    <div style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Gastado</div>
+            </div>
+        </div>
+
+        <!-- Tab: Direcciones -->
+        <div id="tab-direcciones" class="tab-content-perfil">
+            <div class="info-card">
+                <div class="info-card-header">
+                    <h2 class="info-card-title">Mis Direcciones</h2>
+                    <button class="btn-editar" onclick="window.location.href='agregar-direccion.html'">
+                        + Agregar Nueva Dirección
+                    </button>
                 </div>
-                <div style="padding: 1.5rem; background: var(--gris-claro); border-radius: 10px;">
-                    <div style="font-size: 2rem; font-weight: 700; color: var(--naranja-primary);">⭐ 5.0</div>
-                    <div style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Tu Rating</div>
+
+                <!-- Estado vacío -->
+                <div class="empty-state">
+                    <div class="empty-icon">📍</div>
+                    <div class="empty-text">No tienes direcciones guardadas</div>
+                    <p style="color: #999; font-size: 0.9rem;">Agrega una dirección para facilitar tus pedidos</p>
+                    <button class="btn-agregar-direccion" onclick="window.location.href='agregar-direccion.html'">
+                        Agregar Nueva Dirección
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
+        function cambiarTabPerfil(tabName) {
+            // Ocultar todos los contenidos
+            document.querySelectorAll('.tab-content-perfil').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Desactivar todos los tabs
+            document.querySelectorAll('.tab-perfil').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Mostrar el contenido seleccionado
+            document.getElementById('tab-' + tabName).classList.add('active');
+
+            // Activar el tab seleccionado
+            event.target.closest('.tab-perfil').classList.add('active');
+        }
+
         function cerrarSesion() {
             if (confirm('¿Estás seguro de que quieres cerrar sesión?')) {
-                // Limpiar datos de sesión
                 localStorage.clear();
                 window.location.href = 'index.html';
             }
         }
 
-        // Actualizar contador del carrito
         function actualizarContadorCarrito() {
             let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
             const btnCarrito = document.querySelector('.btn-user');

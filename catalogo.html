@@ -3,8 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PizzaMya - Catálogo</title>
+    <title>PizzaMya - Catálogo de Productos</title>
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .catalogo-header {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 0;
+        }
+
+        .catalogo-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--negro);
+            margin-bottom: 0.5rem;
+        }
+
+        .catalogo-subtitle {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .tabs-container {
+            background: #f0f0f0;
+            padding: 0.5rem 2rem;
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tab {
+            padding: 0.8rem 2rem;
+            background: transparent;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .tab:hover {
+            background: #e0e0e0;
+        }
+
+        .tab.active {
+            background: white;
+            color: var(--negro);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 2rem;
+            animation: fadeIn 0.3s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .product-card-compact {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+
+        .product-card-compact:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .product-img-wrapper {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, var(--naranja-primary), var(--rojo-primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+        }
+
+        .product-details {
+            padding: 1.2rem;
+        }
+
+        .product-name-compact {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--negro);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-desc-compact {
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .product-price-compact {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--rojo-primary);
+            margin-bottom: 1rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-small {
+            flex: 1;
+            padding: 0.6rem;
+            font-size: 0.9rem;
+            border-radius: 8px;
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -23,104 +149,253 @@
         </div>
     </nav>
 
-    <div class="container">
-        <!-- Header Section -->
-        <div style="background: linear-gradient(135deg, var(--naranja-primary), var(--rojo-primary)); color: white; padding: 2rem; border-radius: 15px; margin-bottom: 2rem; text-align: center;">
-            <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">🍕 Catálogo Completo</h1>
-            <p style="font-size: 1.1rem;">Descubre todas nuestras deliciosas opciones</p>
-        </div>
-
-        <!-- Categorías -->
-        <section style="margin-bottom: 3rem;">
-            <h2 style="text-align: center; margin-bottom: 2rem; color: var(--negro);">Explora Nuestro Menú</h2>
-            <div class="product-grid">
-                <!-- Card Pizzas -->
-                <div class="product-card" onclick="window.location.href='pizzas.html'">
-                    <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem;">
-                        🍕
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Pizzas</h3>
-                        <p class="product-description">Deliciosas pizzas artesanales con variedad de ingredientes</p>
-                        <p class="product-price">Desde $89</p>
-                        <button class="btn btn-primary" style="width: 100%;">Ver Pizzas</button>
-                    </div>
-                </div>
-
-                <!-- Card Bebidas -->
-                <div class="product-card" onclick="window.location.href='bebidas.html'">
-                    <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem;">
-                        🥤
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Bebidas</h3>
-                        <p class="product-description">Refrescos, jugos y bebidas para acompañar tu pizza</p>
-                        <p class="product-price">Desde $15</p>
-                        <button class="btn btn-primary" style="width: 100%;">Ver Bebidas</button>
-                    </div>
-                </div>
-
-                <!-- Card Combos -->
-                <div class="product-card" onclick="window.location.href='combos.html'">
-                    <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem;">
-                        🎉
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Combos</h3>
-                        <p class="product-description">Ofertas especiales y combos familiares</p>
-                        <p class="product-price">Desde $169</p>
-                        <button class="btn btn-secondary" style="width: 100%;">Ver Combos</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Pizzas Destacadas -->
-        <section>
-            <h2 style="text-align: center; margin-bottom: 2rem; color: var(--negro);">Pizzas Más Vendidas</h2>
-            <div class="product-grid">
-                <!-- Mini cards de pizzas -->
-                <div class="product-card">
-                    <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 4rem;">
-                        🍕
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Pizza Pepperoni</h3>
-                        <p class="product-description">La favorita de todos</p>
-                        <p class="product-price">Desde $99</p>
-                        <button class="btn btn-primary" onclick="window.location.href='pizzas.html'" style="width: 100%;">Ordenar</button>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 4rem;">
-                        🍕
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Pizza Margarita</h3>
-                        <p class="product-description">Clásica italiana</p>
-                        <p class="product-price">Desde $89</p>
-                        <button class="btn btn-primary" onclick="window.location.href='pizzas.html'" style="width: 100%;">Ordenar</button>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 4rem;">
-                        🍕
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Pizza Hawaiana</h3>
-                        <p class="product-description">Jamón y piña</p>
-                        <p class="product-price">Desde $99</p>
-                        <button class="btn btn-primary" onclick="window.location.href='pizzas.html'" style="width: 100%;">Ordenar</button>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- Header -->
+    <div class="catalogo-header">
+        <h1 class="catalogo-title">Catálogo de Productos</h1>
+        <p class="catalogo-subtitle">Explora nuestro menú completo</p>
     </div>
 
-    <script src="js/main.js"></script>
+    <!-- Tabs -->
+    <div class="tabs-container">
+        <button class="tab active" onclick="cambiarTab('pizzas')">Pizzas</button>
+        <button class="tab" onclick="cambiarTab('complementos')">Complementos</button>
+        <button class="tab" onclick="cambiarTab('bebidas')">Bebidas</button>
+        <button class="tab" onclick="cambiarTab('combos')">Combos</button>
+    </div>
+
+    <!-- Contenido de Tabs -->
+    <div class="container">
+        <!-- Tab Pizzas -->
+        <div id="tab-pizzas" class="tab-content active">
+            <div class="product-grid">
+                <!-- Pizza Pepperoni -->
+                <div class="product-card-compact">
+                    <div class="product-img-wrapper">🍕</div>
+                    <div class="product-details">
+                        <h3 class="product-name-compact">Pizza Pepperoni</h3>
+                        <p class="product-desc-compact">Deliciosa pizza con pepperoni de primera calidad y queso mozzarella</p>
+                        <div class="product-price-compact">$189</div>
+                        <div class="btn-group">
+                            <button class="btn btn-outline btn-small" onclick="window.location.href='detalle-pizza.html?pizza=pepperoni'">Ver detalle</button>
+                            <button class="btn btn-primary btn-small" onclick="agregarRapido('Pizza Pepperoni - Mediana', 189)">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pizza Margarita -->
+                <div class="product-card-compact">
+                    <div class="product-img-wrapper">🍕</div>
+                    <div class="product-details">
+                        <h3 class="product-name-compact">Pizza Margarita</h3>
+                        <p class="product-desc-compact">La clásica pizza italiana con ingredientes frescos y naturales</p>
+                        <div class="product-price-compact">$159</div>
+                        <div class="btn-group">
+                            <button class="btn btn-outline btn-small" onclick="window.location.href='detalle-pizza.html?pizza=margarita'">Ver detalle</button>
+                            <button class="btn btn-primary btn-small" onclick="agregarRapido('Pizza Margarita - Mediana', 159)">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pizza Hawaiana -->
+                <div class="product-card-compact">
+                    <div class="product-img-wrapper">🍕</div>
+                    <div class="product-details">
+                        <h3 class="product-name-compact">Pizza Hawaiana</h3>
+                        <p class="product-desc-compact">La combinación perfecta de jamón y piña con queso derretido</p>
+                        <div class="product-price-compact">$179</div>
+                        <div class="btn-group">
+                            <button class="btn btn-outline btn-small" onclick="window.location.href='detalle-pizza.html?pizza=hawaiana'">Ver detalle</button>
+                            <button class="btn btn-primary btn-small" onclick="agregarRapido('Pizza Hawaiana - Mediana', 179)">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pizza Vegetariana -->
+                <div class="product-card-compact">
+                    <div class="product-img-wrapper">🍕</div>
+                    <div class="product-details">
+                        <h3 class="product-name-compact">Pizza Vegetariana</h3>
+                        <p class="product-desc-compact">Pizza llena de vegetales frescos y queso mozzarella</p>
+                        <div class="product-price-compact">$169</div>
+                        <div class="btn-group">
+                            <button class="btn btn-outline btn-small" onclick="window.location.href='detalle-pizza.html?pizza=vegetariana'">Ver detalle</button>
+                            <button class="btn btn-primary btn-small" onclick="agregarRapido('Pizza Vegetariana - Mediana', 169)">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Complementos -->
+        <div id="tab-complementos" class="tab-content">
+            <div class="product-grid">
+                <!-- Alitas BBQ -->
+                <div class="product-card-compact">
+                    <div class="product-img-wrapper" style="background: linear-gradient(135deg, #F4A460, #D2691E);">🍗</div>
+                    <div class="product-details">
+                        <h3 class="product-name-compact">Alitas BBQ</h3>
+                        <p class="product-desc-compact">10 alitas de pollo con salsa BBQ</p>
+                        <div class="product-price-compact">$89</div>
+                        <div class="btn-group">
+                            <button class="btn btn-outline btn-small">Ver detalle</button>
+                            <button class="btn btn-primary btn-small" onclick="agregarRapido('Alitas BBQ', 89)">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dedos de Queso -->
+                <div class="product-card-compact">
+                    <div class="product-img-wrapper" style="background: linear-gradient(135deg, #FFD700, #FFA500);">🧀</div>
+                    <div class="product-details">
+                        <h3 class="product-name-compact">Dedos de Queso</h3>
+                        <p class="product-desc-compact">8 dedos de queso mozzarella empanizados</p>
+                        <div class="product-price-compact">$69</div>
+                        <div class="btn-group">
+                            <button class="btn btn-outline btn-small">Ver detalle</button>
+                            <button class="btn btn-primary btn-small" onclick="agregarRapido('Dedos de Queso', 69)">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pan de Ajo -->
+                <div class="product-card-compact">
+                    <div class="product-img-wrapper" style="background: linear-gradient(135deg, #DEB887, #8B4513);">🥖</div>
+                    <div class="product-details">
+                        <h3 class="product-name-compact">Pan de Ajo</h3>
+                        <p class="product-desc-compact">Pan de ajo recién horneado con mantequilla</p>
+                        <div class="product-price-compact">$45</div>
+                        <div class="btn-group">
+                            <button class="btn btn-outline btn-small">Ver detalle</button>
+                            <button class="btn btn-primary btn-small" onclick="agregarRapido('Pan de Ajo', 45)">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Bebidas -->
+        <div id="tab-bebidas" class="tab-content">
+            <div class="product-grid">
+                <!-- Refresco 1L -->
+                <div class="product-card-compact">
+                    <div class="product-img-wrapper" style="background: linear-gradient(135deg, #DC143C, #8B0000);">🥤</div>
+                    <div class="product-details">
+                        <h3 class="product-name-compact">Refresco 1L</h3>
+                        <p class="product-desc-compact">Refresco de 1 litro a elegir</p>
+                        <div class="product-price-compact">$25</div>
+                        <div class="btn-group">
+                            <button class="btn btn-outline btn-small">Ver detalle</button>
+                            <button class="btn btn-primary btn-small" onclick="agregarRapido('Refresco 1L', 25)">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Agua Mineral -->
+                <div class="product-card-compact">
+                    <div class="product-img-wrapper" style="background: linear-gradient(135deg, #4682B4, #1E90FF);">💧</div>
+                    <div class="product-details">
+                        <h3 class="product-name-compact">Agua Mineral 600ml</h3>
+                        <p class="product-desc-compact">Agua mineral natural</p>
+                        <div class="product-price-compact">$18</div>
+                        <div class="btn-group">
+                            <button class="btn btn-outline btn-small">Ver detalle</button>
+                            <button class="btn btn-primary btn-small" onclick="agregarRapido('Agua Mineral 600ml', 18)">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cerveza -->
+                <div class="product-card-compact">
+                    <div class="product-img-wrapper" style="background: linear-gradient(135deg, #DAA520, #B8860B);">🍺</div>
+                    <div class="product-details">
+                        <h3 class="product-name-compact">Cerveza</h3>
+                        <p class="product-desc-compact">Cerveza fría 355ml</p>
+                        <div class="product-price-compact">$35</div>
+                        <div class="btn-group">
+                            <button class="btn btn-outline btn-small">Ver detalle</button>
+                            <button class="btn btn-primary btn-small" onclick="agregarRapido('Cerveza', 35)">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Combos -->
+        <div id="tab-combos" class="tab-content">
+            <div class="product-grid">
+                <!-- Combo Familiar -->
+                <div class="product-card-compact">
+                    <div class="product-img-wrapper" style="background: linear-gradient(135deg, #FFD700, #FFA500);">🎁</div>
+                    <div class="product-details">
+                        <span style="background: var(--rojo-primary); color: white; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">AHORRA 30%</span>
+                        <h3 class="product-name-compact" style="margin-top: 0.5rem;">Combo Familiar</h3>
+                        <p class="product-desc-compact">2 Pizzas medianas + 1 complemento + 1 refresco 2L</p>
+                        <div class="product-price-compact">$399</div>
+                        <div class="btn-group">
+                            <button class="btn btn-outline btn-small">Ver detalle</button>
+                            <button class="btn btn-secondary btn-small" onclick="agregarRapido('Combo Familiar', 399)">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Combo Individual -->
+                <div class="product-card-compact">
+                    <div class="product-img-wrapper" style="background: linear-gradient(135deg, #FFD700, #FFA500);">🎁</div>
+                    <div class="product-details">
+                        <span style="background: var(--rojo-primary); color: white; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">AHORRA 20%</span>
+                        <h3 class="product-name-compact" style="margin-top: 0.5rem;">Combo Individual</h3>
+                        <p class="product-desc-compact">1 Pizza mediana + 1 refresco 600ml</p>
+                        <div class="product-price-compact">$199</div>
+                        <div class="btn-group">
+                            <button class="btn btn-outline btn-small">Ver detalle</button>
+                            <button class="btn btn-secondary btn-small" onclick="agregarRapido('Combo Individual', 199)">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
+        function cambiarTab(tabName) {
+            // Ocultar todos los contenidos
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Desactivar todos los tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Mostrar el contenido seleccionado
+            document.getElementById('tab-' + tabName).classList.add('active');
+
+            // Activar el tab seleccionado
+            event.target.classList.add('active');
+        }
+
+        function agregarRapido(nombre, precio) {
+            let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+            carrito.push({
+                nombre: nombre,
+                precio: precio,
+                cantidad: 1,
+                tipo: 'producto'
+            });
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            alert(`${nombre} agregado al carrito`);
+            actualizarContadorCarrito();
+        }
+
+        function actualizarContadorCarrito() {
+            let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+            const btnCarrito = document.querySelector('.btn-user');
+            if (btnCarrito) {
+                btnCarrito.innerHTML = `🛒 Carrito (${carrito.length})`;
+            }
+        }
+
         actualizarContadorCarrito();
     </script>
 </body>
