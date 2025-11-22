@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PizzaMya - Combos</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <h1>pizza<span style="color: var(--rojo-primary);">M</span>ya</h1>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html">Menú</a></li>
+            <li><a href="ordena.html">Ordena</a></li>
+            <li><a href="mi-pedido.html">Mi pedido</a></li>
+            <li><a href="combos.html">Combos</a></li>
+        </ul>
+        <div class="user-section">
+            <button class="btn-user" onclick="window.location.href='carrito.html'">🛒 Carrito (0)</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header Section -->
+        <div style="background: linear-gradient(135deg, var(--naranja-primary), var(--rojo-primary)); color: white; padding: 2rem; border-radius: 15px; margin-bottom: 2rem; text-align: center;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">🎉 Combos Especiales</h1>
+            <p style="font-size: 1.1rem;">Ahorra más con nuestros combos familiares</p>
+        </div>
+
+        <!-- Grid de Combos -->
+        <div class="product-grid">
+            <!-- Combo 1 -->
+            <div class="product-card">
+                <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem; background: linear-gradient(135deg, #FFD700, #FFA500);">
+                    🎁
+                </div>
+                <div class="product-info">
+                    <span style="background: var(--rojo-primary); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">AHORRA 20%</span>
+                    <h3 class="product-name">Combo Individual</h3>
+                    <p class="product-description">1 Pizza mediana + 1 Bebida 600ml</p>
+                    <p style="text-decoration: line-through; color: #999; font-size: 1rem;">$214</p>
+                    <p class="product-price">$169</p>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-outline" style="flex: 1;" onclick="window.location.href='detalle-combo.html?id=1'">Ver Detalle</button>
+                        <button class="btn btn-secondary" style="flex: 1;" onclick="agregarAlCarrito('Combo Individual', 169)">Agregar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Combo 2 -->
+            <div class="product-card">
+                <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem; background: linear-gradient(135deg, #FFD700, #FFA500);">
+                    🎁
+                </div>
+                <div class="product-info">
+                    <span style="background: var(--rojo-primary); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">AHORRA 25%</span>
+                    <h3 class="product-name">Combo Pareja</h3>
+                    <p class="product-description">2 Pizzas medianas + 2 Bebidas 600ml</p>
+                    <p style="text-decoration: line-through; color: #999; font-size: 1rem;">$428</p>
+                    <p class="product-price">$319</p>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-outline" style="flex: 1;" onclick="window.location.href='detalle-combo.html?id=2'">Ver Detalle</button>
+                        <button class="btn btn-secondary" style="flex: 1;" onclick="agregarAlCarrito('Combo Pareja', 319)">Agregar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Combo 3 -->
+            <div class="product-card">
+                <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem; background: linear-gradient(135deg, #FFD700, #FFA500);">
+                    🎁
+                </div>
+                <div class="product-info">
+                    <span style="background: var(--rojo-primary); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">AHORRA 30%</span>
+                    <h3 class="product-name">Combo Familiar</h3>
+                    <p class="product-description">2 Pizzas grandes + 4 Bebidas 600ml</p>
+                    <p style="text-decoration: line-through; color: #999; font-size: 1rem;">$798</p>
+                    <p class="product-price">$559</p>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-outline" style="flex: 1;" onclick="window.location.href='detalle-combo.html?id=3'">Ver Detalle</button>
+                        <button class="btn btn-secondary" style="flex: 1;" onclick="agregarAlCarrito('Combo Familiar', 559)">Agregar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Combo 4 -->
+            <div class="product-card">
+                <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem; background: linear-gradient(135deg, #FFD700, #FFA500);">
+                    🎁
+                </div>
+                <div class="product-info">
+                    <span style="background: var(--rojo-primary); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">MEGA OFERTA</span>
+                    <h3 class="product-name">Combo Fiesta</h3>
+                    <p class="product-description">3 Pizzas grandes + 6 Bebidas 600ml + 20 Alitas</p>
+                    <p style="text-decoration: line-through; color: #999; font-size: 1rem;">$1,297</p>
+                    <p class="product-price">$899</p>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-outline" style="flex: 1;" onclick="window.location.href='detalle-combo.html?id=4'">Ver Detalle</button>
+                        <button class="btn btn-secondary" style="flex: 1;" onclick="agregarAlCarrito('Combo Fiesta', 899)">Agregar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Combo 5 -->
+            <div class="product-card">
+                <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem; background: linear-gradient(135deg, #FFD700, #FFA500);">
+                    🎁
+                </div>
+                <div class="product-info">
+                    <span style="background: var(--naranja-primary); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">OFERTA MARTES</span>
+                    <h3 class="product-name">2x1 Martes</h3>
+                    <p class="product-description">2 Pizzas medianas al precio de 1 (solo martes)</p>
+                    <p class="product-price">$189</p>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-outline" style="flex: 1;" onclick="window.location.href='detalle-combo.html?id=5'">Ver Detalle</button>
+                        <button class="btn btn-secondary" style="flex: 1;" onclick="agregarAlCarrito('2x1 Martes', 189)">Agregar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Combo 6 -->
+            <div class="product-card">
+                <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem; background: linear-gradient(135deg, #FFD700, #FFA500);">
+                    🎁
+                </div>
+                <div class="product-info">
+                    <span style="background: var(--naranja-primary); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">NUEVO</span>
+                    <h3 class="product-name">Combo Vegetariano</h3>
+                    <p class="product-description">2 Pizzas vegetarianas + 2 Limonadas naturales</p>
+                    <p class="product-price">$389</p>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-outline" style="flex: 1;" onclick="window.location.href='detalle-combo.html?id=6'">Ver Detalle</button>
+                        <button class="btn btn-secondary" style="flex: 1;" onclick="agregarAlCarrito('Combo Vegetariano', 389)">Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function agregarAlCarrito(nombre, precio) {
+            let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+            carrito.push({
+                nombre: nombre,
+                precio: precio,
+                cantidad: 1,
+                tipo: 'combo'
+            });
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            alert(`${nombre} agregado al carrito`);
+            actualizarContadorCarrito();
+        }
+
+        function actualizarContadorCarrito() {
+            let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+            const btnCarrito = document.querySelector('.btn-user');
+            if (btnCarrito) {
+                btnCarrito.innerHTML = `🛒 Carrito (${carrito.length})`;
+            }
+        }
+
+        actualizarContadorCarrito();
+    </script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PizzaMya - Agregar Dirección</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .direccion-container {
+            max-width: 900px;
+            margin: 2rem auto;
+        }
+
+        .direccion-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+        }
+
+        .direccion-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <h1>pizza<span style="color: var(--rojo-primary);">M</span>ya</h1>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html">Menú</a></li>
+            <li><a href="ordena.html">Ordena</a></li>
+            <li><a href="mi-pedido.html">Mi pedido</a></li>
+            <li><a href="combos.html">Combos</a></li>
+        </ul>
+        <div class="user-section">
+            <button class="btn-user" onclick="window.location.href='perfil.html'">👤 Mi Cuenta</button>
+        </div>
+    </nav>
+
+    <div class="direccion-container">
+        <div style="margin-bottom: 2rem;">
+            <a href="perfil.html" style="color: var(--naranja-primary); text-decoration: none; font-weight: 600;">← Volver al Perfil</a>
+        </div>
+
+        <h1 style="margin-bottom: 2rem; color: var(--negro);">📍 Mis Direcciones</h1>
+
+        <!-- Lista de Direcciones Guardadas -->
+        <div id="listaDirecciones">
+            <div class="direccion-card">
+                <div style="flex: 1;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <h3 style="color: var(--negro);">Casa</h3>
+                        <span style="background: var(--naranja-primary); color: white; padding: 0.2rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">Principal</span>
+                    </div>
+                    <p style="color: #666; line-height: 1.6;">
+                        Calle Principal #123<br>
+                        Col. Centro, Ciudad de México<br>
+                        C.P. 12345
+                    </p>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button class="btn btn-outline" style="padding: 0.5rem 1rem;">✏️</button>
+                    <button class="btn btn-secondary" style="padding: 0.5rem 1rem;">🗑️</button>
+                </div>
+            </div>
+
+            <div class="direccion-card">
+                <div style="flex: 1;">
+                    <h3 style="color: var(--negro); margin-bottom: 0.5rem;">Oficina</h3>
+                    <p style="color: #666; line-height: 1.6;">
+                        Av. Reforma #456<br>
+                        Col. Juárez, Ciudad de México<br>
+                        C.P. 67890
+                    </p>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button class="btn btn-outline" style="padding: 0.5rem 1rem;">✏️</button>
+                    <button class="btn btn-secondary" style="padding: 0.5rem 1rem;">🗑️</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulario para Agregar Nueva Dirección -->
+        <div class="direccion-form">
+            <h2 style="margin-bottom: 2rem; color: var(--negro); text-align: center;">Agregar Nueva Dirección</h2>
+
+            <form id="agregarDireccionForm">
+                <div class="form-group">
+                    <label for="etiqueta">Etiqueta de la Dirección</label>
+                    <input type="text" id="etiqueta" name="etiqueta" placeholder="Ej: Casa, Oficina, Casa de Mamá" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="calle">Calle y Número</label>
+                    <input type="text" id="calle" name="calle" placeholder="Ej: Calle Principal #123" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="colonia">Colonia</label>
+                    <input type="text" id="colonia" name="colonia" placeholder="Ej: Centro" required>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label for="ciudad">Ciudad</label>
+                        <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad de México" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="estado">Estado</label>
+                        <select id="estado" name="estado" required>
+                            <option value="">Selecciona un estado</option>
+                            <option value="CDMX">Ciudad de México</option>
+                            <option value="Aguascalientes">Aguascalientes</option>
+                            <option value="Baja California">Baja California</option>
+                            <option value="Chihuahua">Chihuahua</option>
+                            <option value="Jalisco">Jalisco</option>
+                            <option value="Nuevo León">Nuevo León</option>
+                            <!-- Agregar más estados según sea necesario -->
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="codigoPostal">Código Postal</label>
+                    <input type="text" id="codigoPostal" name="codigoPostal" placeholder="12345" maxlength="5" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="referencias">Referencias (Opcional)</label>
+                    <textarea id="referencias" name="referencias" rows="3" placeholder="Ej: Casa de color blanco, portón negro, entre la tienda y la farmacia"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono">Teléfono de Contacto</label>
+                    <input type="tel" id="telefono" name="telefono" placeholder="(555) 123-4567" required>
+                </div>
+
+                <div class="form-group">
+                    <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                        <input type="checkbox" id="principal" name="principal">
+                        <span style="font-weight: normal;">Establecer como dirección principal</span>
+                    </label>
+                </div>
+
+                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary" style="flex: 1; padding: 1rem;">
+                        Guardar Dirección
+                    </button>
+                    <button type="button" class="btn btn-outline" onclick="limpiarFormulario()" style="flex: 1; padding: 1rem;">
+                        Limpiar
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Mapa (Placeholder) -->
+        <div style="background: white; padding: 2rem; border-radius: 15px; margin-top: 2rem; text-align: center;">
+            <h3 style="margin-bottom: 1rem; color: var(--negro);">📍 Ubicación en el Mapa</h3>
+            <div style="background: var(--gris-claro); height: 300px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #666;">
+                Mapa interactivo (integración con Google Maps)
+            </div>
+            <p style="color: #666; margin-top: 1rem; font-size: 0.9rem;">
+                Arrastra el marcador para ajustar la ubicación exacta
+            </p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('agregarDireccionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const etiqueta = document.getElementById('etiqueta').value;
+            const calle = document.getElementById('calle').value;
+            const colonia = document.getElementById('colonia').value;
+            const ciudad = document.getElementById('ciudad').value;
+            const estado = document.getElementById('estado').value;
+            const codigoPostal = document.getElementById('codigoPostal').value;
+            const referencias = document.getElementById('referencias').value;
+            const telefono = document.getElementById('telefono').value;
+            const principal = document.getElementById('principal').checked;
+
+            // Aquí se guardaría la dirección en localStorage o se enviaría al servidor
+            alert('Dirección guardada exitosamente');
+
+            // Limpiar formulario
+            limpiarFormulario();
+        });
+
+        function limpiarFormulario() {
+            document.getElementById('agregarDireccionForm').reset();
+        }
+    </script>
+</body>
+</html>

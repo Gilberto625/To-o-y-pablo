@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PizzaMya - Pizzas</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <h1>pizza<span style="color: var(--rojo-primary);">M</span>ya</h1>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html">Menú</a></li>
+            <li><a href="ordena.html">Ordena</a></li>
+            <li><a href="mi-pedido.html">Mi pedido</a></li>
+            <li><a href="combos.html">Combos</a></li>
+        </ul>
+        <div class="user-section">
+            <button class="btn-user" onclick="window.location.href='carrito.html'">🛒 Carrito (0)</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header Section -->
+        <div style="background: linear-gradient(135deg, var(--naranja-primary), var(--rojo-primary)); color: white; padding: 2rem; border-radius: 15px; margin-bottom: 2rem; text-align: center;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">🍕 Nuestras Pizzas</h1>
+            <p style="font-size: 1.1rem;">Pizzas artesanales hechas con los mejores ingredientes</p>
+        </div>
+
+        <!-- Filtros -->
+        <div style="background: white; padding: 1.5rem; border-radius: 15px; margin-bottom: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+            <label style="font-weight: 600;">Filtrar por:</label>
+            <select style="padding: 0.5rem 1rem; border: 2px solid #ddd; border-radius: 10px; cursor: pointer;">
+                <option>Todas</option>
+                <option>Clásicas</option>
+                <option>Especiales</option>
+                <option>Vegetarianas</option>
+            </select>
+            <select style="padding: 0.5rem 1rem; border: 2px solid #ddd; border-radius: 10px; cursor: pointer;">
+                <option>Todos los tamaños</option>
+                <option>Chica</option>
+                <option>Mediana</option>
+                <option>Grande</option>
+                <option>Familiar</option>
+            </select>
+        </div>
+
+        <!-- Grid de Pizzas -->
+        <div class="product-grid">
+            <!-- Pizza 1 -->
+            <div class="product-card">
+                <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem;">
+                    🍕
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Pizza Margarita</h3>
+                    <p class="product-description">Salsa de tomate, mozzarella fresca, albahaca y aceite de oliva</p>
+                    <p class="product-price">$159</p>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-outline" style="flex: 1;" onclick="window.location.href='detalle-pizza.html?id=1'">Ver Detalle</button>
+                        <button class="btn btn-primary" style="flex: 1;" onclick="agregarAlCarrito('Pizza Margarita', 159)">Agregar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pizza 2 -->
+            <div class="product-card">
+                <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem;">
+                    🍕
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Pizza Pepperoni</h3>
+                    <p class="product-description">Salsa de tomate, mozzarella y abundante pepperoni</p>
+                    <p class="product-price">$189</p>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-outline" style="flex: 1;" onclick="window.location.href='detalle-pizza.html?id=2'">Ver Detalle</button>
+                        <button class="btn btn-primary" style="flex: 1;" onclick="agregarAlCarrito('Pizza Pepperoni', 189)">Agregar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pizza 3 -->
+            <div class="product-card">
+                <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem;">
+                    🍕
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Pizza Hawaiana</h3>
+                    <p class="product-description">Salsa de tomate, mozzarella, jamón y piña</p>
+                    <p class="product-price">$179</p>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-outline" style="flex: 1;" onclick="window.location.href='detalle-pizza.html?id=3'">Ver Detalle</button>
+                        <button class="btn btn-primary" style="flex: 1;" onclick="agregarAlCarrito('Pizza Hawaiana', 179)">Agregar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pizza 4 -->
+            <div class="product-card">
+                <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem;">
+                    🍕
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Pizza Cuatro Quesos</h3>
+                    <p class="product-description">Mozzarella, parmesano, gorgonzola y queso de cabra</p>
+                    <p class="product-price">$219</p>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-outline" style="flex: 1;" onclick="window.location.href='detalle-pizza.html?id=4'">Ver Detalle</button>
+                        <button class="btn btn-primary" style="flex: 1;" onclick="agregarAlCarrito('Pizza Cuatro Quesos', 219)">Agregar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pizza 5 -->
+            <div class="product-card">
+                <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem;">
+                    🍕
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Pizza Vegetariana</h3>
+                    <p class="product-description">Pimientos, champiñones, cebolla, aceitunas y tomate</p>
+                    <p class="product-price">$199</p>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-outline" style="flex: 1;" onclick="window.location.href='detalle-pizza.html?id=5'">Ver Detalle</button>
+                        <button class="btn btn-primary" style="flex: 1;" onclick="agregarAlCarrito('Pizza Vegetariana', 199)">Agregar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pizza 6 -->
+            <div class="product-card">
+                <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem;">
+                    🍕
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Pizza Mexicana</h3>
+                    <p class="product-description">Carne molida, jalapeños, cebolla, tomate y chile</p>
+                    <p class="product-price">$209</p>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-outline" style="flex: 1;" onclick="window.location.href='detalle-pizza.html?id=6'">Ver Detalle</button>
+                        <button class="btn btn-primary" style="flex: 1;" onclick="agregarAlCarrito('Pizza Mexicana', 209)">Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function agregarAlCarrito(nombre, precio) {
+            // Obtener carrito actual
+            let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+
+            // Agregar producto
+            carrito.push({
+                nombre: nombre,
+                precio: precio,
+                cantidad: 1,
+                tipo: 'pizza'
+            });
+
+            // Guardar en localStorage
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+
+            // Mostrar confirmación
+            alert(`${nombre} agregada al carrito`);
+
+            // Actualizar contador del carrito
+            actualizarContadorCarrito();
+        }
+
+        function actualizarContadorCarrito() {
+            let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+            const btnCarrito = document.querySelector('.btn-user');
+            if (btnCarrito) {
+                btnCarrito.innerHTML = `🛒 Carrito (${carrito.length})`;
+            }
+        }
+
+        // Actualizar contador al cargar la página
+        actualizarContadorCarrito();
+    </script>
+</body>
+</html>

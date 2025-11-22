@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PizzaMya - Mi Perfil</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .perfil-container {
+            max-width: 900px;
+            margin: 2rem auto;
+        }
+
+        .perfil-header {
+            background: linear-gradient(135deg, var(--naranja-primary), var(--rojo-primary));
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            margin: 0 auto 1rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .perfil-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: #666;
+            font-weight: 600;
+        }
+
+        .info-value {
+            color: var(--negro);
+            font-weight: 500;
+        }
+
+        .menu-item {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-item:hover {
+            background: var(--gris-claro);
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <h1>pizza<span style="color: var(--rojo-primary);">M</span>ya</h1>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html">Menú</a></li>
+            <li><a href="ordena.html">Ordena</a></li>
+            <li><a href="mi-pedido.html">Mi pedido</a></li>
+            <li><a href="combos.html">Combos</a></li>
+        </ul>
+        <div class="user-section">
+            <button class="btn-user" onclick="window.location.href='carrito.html'">🛒 Carrito (0)</button>
+        </div>
+    </nav>
+
+    <div class="perfil-container">
+        <!-- Header del Perfil -->
+        <div class="perfil-header">
+            <div class="avatar">👤</div>
+            <h1 style="font-size: 2rem; margin-bottom: 0.5rem;">Juan Pérez</h1>
+            <p style="opacity: 0.9;">juan.perez@email.com</p>
+        </div>
+
+        <!-- Información Personal -->
+        <div class="perfil-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h2 style="color: var(--negro);">Información Personal</h2>
+                <button class="btn btn-outline" onclick="window.location.href='editar-perfil.html'" style="padding: 0.5rem 1.5rem;">
+                    ✏️ Editar
+                </button>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Nombre completo:</span>
+                <span class="info-value">Juan Pérez García</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Correo electrónico:</span>
+                <span class="info-value">juan.perez@email.com</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Teléfono:</span>
+                <span class="info-value">(555) 123-4567</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Dirección:</span>
+                <span class="info-value">Calle Principal #123, Col. Centro</span>
+            </div>
+        </div>
+
+        <!-- Menú de Opciones -->
+        <div class="perfil-section">
+            <h2 style="color: var(--negro); margin-bottom: 1.5rem;">Opciones de Cuenta</h2>
+
+            <div class="menu-item" onclick="window.location.href='mi-pedido.html'">
+                <div>
+                    <div style="font-weight: 600; margin-bottom: 0.3rem;">📦 Mis Pedidos</div>
+                    <div style="font-size: 0.9rem; color: #666;">Ver historial de pedidos</div>
+                </div>
+                <span>→</span>
+            </div>
+
+            <div class="menu-item" onclick="window.location.href='agregar-direccion.html'">
+                <div>
+                    <div style="font-weight: 600; margin-bottom: 0.3rem;">📍 Direcciones</div>
+                    <div style="font-size: 0.9rem; color: #666;">Gestionar direcciones de entrega</div>
+                </div>
+                <span>→</span>
+            </div>
+
+            <div class="menu-item" onclick="alert('Próximamente')">
+                <div>
+                    <div style="font-weight: 600; margin-bottom: 0.3rem;">💳 Métodos de Pago</div>
+                    <div style="font-size: 0.9rem; color: #666;">Administrar formas de pago</div>
+                </div>
+                <span>→</span>
+            </div>
+
+            <div class="menu-item" onclick="alert('Próximamente')">
+                <div>
+                    <div style="font-weight: 600; margin-bottom: 0.3rem;">🎁 Cupones y Ofertas</div>
+                    <div style="font-size: 0.9rem; color: #666;">Ver cupones disponibles</div>
+                </div>
+                <span>→</span>
+            </div>
+
+            <div class="menu-item" onclick="window.location.href='politicas.html'">
+                <div>
+                    <div style="font-weight: 600; margin-bottom: 0.3rem;">🔒 Privacidad</div>
+                    <div style="font-size: 0.9rem; color: #666;">Políticas de privacidad</div>
+                </div>
+                <span>→</span>
+            </div>
+
+            <div class="menu-item" onclick="cerrarSesion()">
+                <div>
+                    <div style="font-weight: 600; margin-bottom: 0.3rem; color: var(--rojo-primary);">🚪 Cerrar Sesión</div>
+                    <div style="font-size: 0.9rem; color: #666;">Salir de tu cuenta</div>
+                </div>
+                <span>→</span>
+            </div>
+        </div>
+
+        <!-- Estadísticas -->
+        <div class="perfil-section">
+            <h2 style="color: var(--negro); margin-bottom: 1.5rem;">Mis Estadísticas</h2>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center;">
+                <div style="padding: 1.5rem; background: var(--gris-claro); border-radius: 10px;">
+                    <div style="font-size: 2rem; font-weight: 700; color: var(--naranja-primary);">12</div>
+                    <div style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Pedidos</div>
+                </div>
+                <div style="padding: 1.5rem; background: var(--gris-claro); border-radius: 10px;">
+                    <div style="font-size: 2rem; font-weight: 700; color: var(--rojo-primary);">$2,345</div>
+                    <div style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Gastado</div>
+                </div>
+                <div style="padding: 1.5rem; background: var(--gris-claro); border-radius: 10px;">
+                    <div style="font-size: 2rem; font-weight: 700; color: var(--naranja-primary);">⭐ 5.0</div>
+                    <div style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Tu Rating</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function cerrarSesion() {
+            if (confirm('¿Estás seguro de que quieres cerrar sesión?')) {
+                // Limpiar datos de sesión
+                localStorage.clear();
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Actualizar contador del carrito
+        function actualizarContadorCarrito() {
+            let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+            const btnCarrito = document.querySelector('.btn-user');
+            if (btnCarrito) {
+                btnCarrito.innerHTML = `🛒 Carrito (${carrito.length})`;
+            }
+        }
+
+        actualizarContadorCarrito();
+    </script>
+</body>
+</html>

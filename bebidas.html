@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PizzaMya - Bebidas</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <h1>pizza<span style="color: var(--rojo-primary);">M</span>ya</h1>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html">Menú</a></li>
+            <li><a href="ordena.html">Ordena</a></li>
+            <li><a href="mi-pedido.html">Mi pedido</a></li>
+            <li><a href="combos.html">Combos</a></li>
+        </ul>
+        <div class="user-section">
+            <button class="btn-user" onclick="window.location.href='carrito.html'">🛒 Carrito (0)</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header Section -->
+        <div style="background: linear-gradient(135deg, var(--naranja-primary), var(--rojo-primary)); color: white; padding: 2rem; border-radius: 15px; margin-bottom: 2rem; text-align: center;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">🥤 Bebidas</h1>
+            <p style="font-size: 1.1rem;">Refrescantes bebidas para acompañar tu pizza</p>
+        </div>
+
+        <!-- Grid de Bebidas -->
+        <div class="product-grid">
+            <!-- Bebida 1 -->
+            <div class="product-card">
+                <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem;">
+                    🥤
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Coca-Cola 600ml</h3>
+                    <p class="product-description">Refresco clásico de cola</p>
+                    <p class="product-price">$25</p>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-outline" style="flex: 1;" onclick="window.location.href='detalle-bebida.html?id=1'">Ver Detalle</button>
+                        <button class="btn btn-primary" style="flex: 1;" onclick="agregarAlCarrito('Coca-Cola 600ml', 25)">Agregar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bebida 2 -->
+            <div class="product-card">
+                <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem;">
+                    🥤
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Pepsi 600ml</h3>
+                    <p class="product-description">Refresco de cola</p>
+                    <p class="product-price">$25</p>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-outline" style="flex: 1;" onclick="window.location.href='detalle-bebida.html?id=2'">Ver Detalle</button>
+                        <button class="btn btn-primary" style="flex: 1;" onclick="agregarAlCarrito('Pepsi 600ml', 25)">Agregar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bebida 3 -->
+            <div class="product-card">
+                <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem;">
+                    🧃
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Jugo de Naranja</h3>
+                    <p class="product-description">Jugo natural de naranja 500ml</p>
+                    <p class="product-price">$35</p>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-outline" style="flex: 1;" onclick="window.location.href='detalle-bebida.html?id=3'">Ver Detalle</button>
+                        <button class="btn btn-primary" style="flex: 1;" onclick="agregarAlCarrito('Jugo de Naranja', 35)">Agregar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bebida 4 -->
+            <div class="product-card">
+                <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem;">
+                    💧
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Agua Natural 600ml</h3>
+                    <p class="product-description">Agua purificada embotellada</p>
+                    <p class="product-price">$15</p>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-outline" style="flex: 1;" onclick="window.location.href='detalle-bebida.html?id=4'">Ver Detalle</button>
+                        <button class="btn btn-primary" style="flex: 1;" onclick="agregarAlCarrito('Agua Natural 600ml', 15)">Agregar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bebida 5 -->
+            <div class="product-card">
+                <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem;">
+                    🍹
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Limonada Natural</h3>
+                    <p class="product-description">Limonada fresca hecha al momento</p>
+                    <p class="product-price">$30</p>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-outline" style="flex: 1;" onclick="window.location.href='detalle-bebida.html?id=5'">Ver Detalle</button>
+                        <button class="btn btn-primary" style="flex: 1;" onclick="agregarAlCarrito('Limonada Natural', 30)">Agregar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bebida 6 -->
+            <div class="product-card">
+                <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem;">
+                    🧃
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Té Helado</h3>
+                    <p class="product-description">Té helado sabor durazno 500ml</p>
+                    <p class="product-price">$28</p>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-outline" style="flex: 1;" onclick="window.location.href='detalle-bebida.html?id=6'">Ver Detalle</button>
+                        <button class="btn btn-primary" style="flex: 1;" onclick="agregarAlCarrito('Té Helado', 28)">Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function agregarAlCarrito(nombre, precio) {
+            let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+            carrito.push({
+                nombre: nombre,
+                precio: precio,
+                cantidad: 1,
+                tipo: 'bebida'
+            });
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            alert(`${nombre} agregada al carrito`);
+            actualizarContadorCarrito();
+        }
+
+        function actualizarContadorCarrito() {
+            let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+            const btnCarrito = document.querySelector('.btn-user');
+            if (btnCarrito) {
+                btnCarrito.innerHTML = `🛒 Carrito (${carrito.length})`;
+            }
+        }
+
+        actualizarContadorCarrito();
+    </script>
+</body>
+</html>

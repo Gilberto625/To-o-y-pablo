@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PizzaMya - Carrito de Compras</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .carrito-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .carrito-vacio {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: white;
+            border-radius: 15px;
+        }
+
+        .resumen-pedido {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        @media (max-width: 768px) {
+            .carrito-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <h1>pizza<span style="color: var(--rojo-primary);">M</span>ya</h1>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html">Menú</a></li>
+            <li><a href="ordena.html">Ordena</a></li>
+            <li><a href="mi-pedido.html">Mi pedido</a></li>
+            <li><a href="combos.html">Combos</a></li>
+        </ul>
+        <div class="user-section">
+            <button class="btn-user" onclick="window.location.href='perfil.html'">👤 Mi Cuenta</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 style="margin-bottom: 2rem; color: var(--negro);">🛒 Carrito de Compras</h1>
+
+        <div class="carrito-container">
+            <!-- Lista de Productos -->
+            <div>
+                <div id="listaProductos">
+                    <!-- Los productos se cargarán dinámicamente aquí -->
+                </div>
+            </div>
+
+            <!-- Resumen del Pedido -->
+            <div class="resumen-pedido">
+                <h2 style="margin-bottom: 1.5rem; color: var(--negro);">Resumen del Pedido</h2>
+
+                <div style="border-bottom: 2px solid #eee; padding-bottom: 1rem; margin-bottom: 1rem;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.8rem;">
+                        <span style="color: #666;">Subtotal:</span>
+                        <span id="subtotal" style="font-weight: 600;">$0</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.8rem;">
+                        <span style="color: #666;">Envío:</span>
+                        <span style="font-weight: 600; color: var(--naranja-primary);">GRATIS</span>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; margin-bottom: 2rem;">
+                    <span style="font-size: 1.3rem; font-weight: 700;">Total:</span>
+                    <span id="total" style="font-size: 1.5rem; font-weight: 700; color: var(--rojo-primary);">$0</span>
+                </div>
+
+                <button class="btn btn-primary" onclick="procederPago()" style="width: 100%; padding: 1rem; margin-bottom: 1rem;">
+                    Proceder al Pago
+                </button>
+
+                <button class="btn btn-outline" onclick="window.location.href='index.html'" style="width: 100%; padding: 1rem;">
+                    Seguir Comprando
+                </button>
+
+                <!-- Código de Descuento -->
+                <div style="margin-top: 2rem; padding: 1.5rem; background: var(--gris-claro); border-radius: 10px;">
+                    <h3 style="margin-bottom: 1rem; font-size: 1rem;">¿Tienes un cupón?</h3>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <input type="text" placeholder="Código de descuento" style="flex: 1; padding: 0.8rem; border: 2px solid #ddd; border-radius: 10px;">
+                        <button class="btn btn-secondary" style="padding: 0.8rem 1.5rem;">Aplicar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function cargarCarrito() {
+            const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+            const listaProductos = document.getElementById('listaProductos');
+
+            if (carrito.length === 0) {
+                listaProductos.innerHTML = `
+                    <div class="carrito-vacio">
+                        <div style="font-size: 5rem; margin-bottom: 1rem;">🛒</div>
+                        <h2 style="margin-bottom: 1rem; color: var(--negro);">Tu carrito está vacío</h2>
+                        <p style="color: #666; margin-bottom: 2rem;">Agrega productos deliciosos para comenzar</p>
+                        <button class="btn btn-primary" onclick="window.location.href='index.html'">Ver Menú</button>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            let subtotal = 0;
+
+            carrito.forEach((producto, index) => {
+                const precioTotal = producto.precio * (producto.cantidad || 1);
+                subtotal += precioTotal;
+
+                html += `
+                    <div class="cart-item">
+                        <div style="font-size: 3rem;">
+                            ${producto.tipo === 'pizza' ? '🍕' : producto.tipo === 'bebida' ? '🥤' : '🎁'}
+                        </div>
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${producto.nombre}</div>
+                            <div class="cart-item-price">$${producto.precio}</div>
+                            <div class="quantity-controls" style="margin-top: 0.5rem;">
+                                <button onclick="cambiarCantidad(${index}, -1)">-</button>
+                                <span style="margin: 0 1rem; font-weight: 600;">${producto.cantidad || 1}</span>
+                                <button onclick="cambiarCantidad(${index}, 1)">+</button>
+                            </div>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between;">
+                            <button onclick="eliminarProducto(${index})" style="background: var(--rojo-primary); color: white; border: none; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                                🗑️ Eliminar
+                            </button>
+                            <div style="font-size: 1.3rem; font-weight: 700; color: var(--rojo-primary);">
+                                $${precioTotal}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            listaProductos.innerHTML = html;
+            document.getElementById('subtotal').textContent = `$${subtotal}`;
+            document.getElementById('total').textContent = `$${subtotal}`;
+        }
+
+        function cambiarCantidad(index, delta) {
+            let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+            if (!carrito[index].cantidad) carrito[index].cantidad = 1;
+
+            carrito[index].cantidad = Math.max(1, carrito[index].cantidad + delta);
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            cargarCarrito();
+        }
+
+        function eliminarProducto(index) {
+            let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+            carrito.splice(index, 1);
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            cargarCarrito();
+        }
+
+        function procederPago() {
+            const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+            if (carrito.length === 0) {
+                alert('Tu carrito está vacío');
+                return;
+            }
+
+            // Guardar pedido
+            const pedido = {
+                id: Date.now(),
+                productos: carrito,
+                fecha: new Date().toISOString(),
+                estado: 'preparando',
+                total: carrito.reduce((sum, p) => sum + (p.precio * (p.cantidad || 1)), 0)
+            };
+
+            let pedidos = JSON.parse(localStorage.getItem('pedidos') || '[]');
+            pedidos.push(pedido);
+            localStorage.setItem('pedidos', JSON.stringify(pedidos));
+
+            // Limpiar carrito
+            localStorage.removeItem('carrito');
+
+            // Redirigir a la página de pedido
+            window.location.href = 'pedido.html?id=' + pedido.id;
+        }
+
+        // Cargar carrito al iniciar
+        cargarCarrito();
+    </script>
+</body>
+</html>

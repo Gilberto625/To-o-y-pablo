@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PizzaMya - Ordena Ahora</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <h1>pizza<span style="color: var(--rojo-primary);">M</span>ya</h1>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html">Menú</a></li>
+            <li><a href="ordena.html">Ordena</a></li>
+            <li><a href="mi-pedido.html">Mi pedido</a></li>
+            <li><a href="combos.html">Combos</a></li>
+        </ul>
+        <div class="user-section">
+            <button class="btn-user" onclick="window.location.href='login.html'">Iniciar Sesión</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero -->
+        <section class="hero">
+            <h1>🍕 Ordena Tu Pizza Favorita</h1>
+            <p>Elige entre nuestras deliciosas opciones y recibe en 30-45 minutos</p>
+        </section>
+
+        <!-- Categorías Rápidas -->
+        <section style="margin-top: 3rem;">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: var(--negro);">¿Qué te apetece hoy?</h2>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                <div onclick="window.location.href='pizzas.html'" style="background: white; padding: 2rem; border-radius: 15px; text-align: center; cursor: pointer; transition: transform 0.3s; box-shadow: 0 2px 10px rgba(0,0,0,0.05);" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🍕</div>
+                    <h3 style="color: var(--naranja-primary); margin-bottom: 0.5rem;">Pizzas</h3>
+                    <p style="color: #666; font-size: 0.9rem;">Desde $129</p>
+                </div>
+
+                <div onclick="window.location.href='bebidas.html'" style="background: white; padding: 2rem; border-radius: 15px; text-align: center; cursor: pointer; transition: transform 0.3s; box-shadow: 0 2px 10px rgba(0,0,0,0.05);" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🥤</div>
+                    <h3 style="color: var(--naranja-primary); margin-bottom: 0.5rem;">Bebidas</h3>
+                    <p style="color: #666; font-size: 0.9rem;">Desde $15</p>
+                </div>
+
+                <div onclick="window.location.href='combos.html'" style="background: white; padding: 2rem; border-radius: 15px; text-align: center; cursor: pointer; transition: transform 0.3s; box-shadow: 0 2px 10px rgba(0,0,0,0.05);" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🎁</div>
+                    <h3 style="color: var(--rojo-primary); margin-bottom: 0.5rem;">Combos</h3>
+                    <p style="color: #666; font-size: 0.9rem;">Desde $169</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Proceso de Pedido -->
+        <section style="margin-top: 4rem; background: white; padding: 3rem; border-radius: 15px;">
+            <h2 style="text-align: center; margin-bottom: 3rem; color: var(--negro);">Cómo Hacer Tu Pedido</h2>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                <div style="text-align: center;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--naranja-primary), var(--rojo-primary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 2rem; font-weight: 700;">1</div>
+                    <h3 style="color: var(--negro); margin-bottom: 0.5rem;">Elige tu Pizza</h3>
+                    <p style="color: #666; font-size: 0.9rem;">Selecciona de nuestro amplio menú</p>
+                </div>
+
+                <div style="text-align: center;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--naranja-primary), var(--rojo-primary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 2rem; font-weight: 700;">2</div>
+                    <h3 style="color: var(--negro); margin-bottom: 0.5rem;">Personaliza</h3>
+                    <p style="color: #666; font-size: 0.9rem;">Elige tamaño e ingredientes extra</p>
+                </div>
+
+                <div style="text-align: center;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--naranja-primary), var(--rojo-primary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 2rem; font-weight: 700;">3</div>
+                    <h3 style="color: var(--negro); margin-bottom: 0.5rem;">Paga y Recibe</h3>
+                    <p style="color: #666; font-size: 0.9rem;">Paga seguro y espera tu pedido</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ofertas del Día -->
+        <section style="margin-top: 3rem;">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: var(--negro);">🔥 Ofertas del Día</h2>
+
+            <div style="background: linear-gradient(135deg, var(--naranja-primary), var(--rojo-primary)); padding: 3rem; border-radius: 15px; color: white; text-align: center;">
+                <h3 style="font-size: 2.5rem; margin-bottom: 1rem;">¡2x1 en Pizzas Medianas!</h3>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.95;">Todos los martes de 5pm a 9pm</p>
+                <button class="btn" onclick="window.location.href='pizzas.html'" style="background: white; color: var(--naranja-primary); padding: 1rem 3rem; font-size: 1.1rem;">
+                    Ordenar Ahora
+                </button>
+            </div>
+        </section>
+
+        <!-- Información de Entrega -->
+        <section style="margin-top: 3rem; background: white; padding: 2rem; border-radius: 15px;">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: var(--negro);">📦 Información de Entrega</h2>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center;">
+                <div>
+                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">⏱️</div>
+                    <h4 style="color: var(--naranja-primary); margin-bottom: 0.5rem;">30-45 min</h4>
+                    <p style="color: #666; font-size: 0.9rem;">Tiempo de entrega</p>
+                </div>
+
+                <div>
+                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🚚</div>
+                    <h4 style="color: var(--naranja-primary); margin-bottom: 0.5rem;">Envío Gratis</h4>
+                    <p style="color: #666; font-size: 0.9rem;">En pedidos mayores a $200</p>
+                </div>
+
+                <div>
+                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">📍</div>
+                    <h4 style="color: var(--naranja-primary); margin-bottom: 0.5rem;">Cobertura Amplia</h4>
+                    <p style="color: #666; font-size: 0.9rem;">Entregamos en toda la ciudad</p>
+                </div>
+
+                <div>
+                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">💳</div>
+                    <h4 style="color: var(--naranja-primary); margin-bottom: 0.5rem;">Pago Seguro</h4>
+                    <p style="color: #666; font-size: 0.9rem;">Múltiples métodos de pago</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PizzaMya - Detalle Pizza</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .detalle-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .detalle-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            padding: 3rem;
+        }
+
+        .imagen-detalle {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--naranja-primary), var(--rojo-primary));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10rem;
+        }
+
+        .size-selector {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .size-option {
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .size-option:hover {
+            border-color: var(--naranja-primary);
+        }
+
+        .size-option.active {
+            border-color: var(--naranja-primary);
+            background: var(--naranja-primary);
+            color: white;
+        }
+
+        .ingredientes-lista {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .ingrediente-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            background: var(--gris-claro);
+            border-radius: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .detalle-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <h1>pizza<span style="color: var(--rojo-primary);">M</span>ya</h1>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html">Menú</a></li>
+            <li><a href="ordena.html">Ordena</a></li>
+            <li><a href="mi-pedido.html">Mi pedido</a></li>
+            <li><a href="combos.html">Combos</a></li>
+        </ul>
+        <div class="user-section">
+            <button class="btn-user" onclick="window.location.href='carrito.html'">🛒 Carrito (0)</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div style="margin-bottom: 2rem;">
+            <a href="pizzas.html" style="color: var(--naranja-primary); text-decoration: none; font-weight: 600;">← Volver a Pizzas</a>
+        </div>
+
+        <div class="detalle-container">
+            <div class="detalle-grid">
+                <!-- Imagen del Producto -->
+                <div>
+                    <div class="imagen-detalle">
+                        🍕
+                    </div>
+                </div>
+
+                <!-- Información del Producto -->
+                <div>
+                    <h1 style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--negro);">Pizza Margarita</h1>
+                    <p style="color: #666; font-size: 1.1rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                        La clásica pizza italiana con salsa de tomate fresca, mozzarella de la mejor calidad,
+                        albahaca aromática y un toque de aceite de oliva extra virgen.
+                    </p>
+
+                    <!-- Precio -->
+                    <div style="margin-bottom: 2rem;">
+                        <p class="product-price" style="font-size: 2.5rem; margin-bottom: 0.5rem;">$159</p>
+                        <p style="color: #666; font-size: 0.9rem;">Precio base - Tamaño mediana</p>
+                    </div>
+
+                    <!-- Selector de Tamaño -->
+                    <div>
+                        <h3 style="margin-bottom: 1rem;">Selecciona el tamaño:</h3>
+                        <div class="size-selector">
+                            <div class="size-option" onclick="seleccionarTamano(this, 'Chica', 129)">
+                                <div style="font-size: 1.5rem; font-weight: 700;">S</div>
+                                <div style="font-size: 0.8rem; margin-top: 0.3rem;">Chica</div>
+                                <div style="font-weight: 600; margin-top: 0.3rem;">$129</div>
+                            </div>
+                            <div class="size-option active" onclick="seleccionarTamano(this, 'Mediana', 159)">
+                                <div style="font-size: 1.5rem; font-weight: 700;">M</div>
+                                <div style="font-size: 0.8rem; margin-top: 0.3rem;">Mediana</div>
+                                <div style="font-weight: 600; margin-top: 0.3rem;">$159</div>
+                            </div>
+                            <div class="size-option" onclick="seleccionarTamano(this, 'Grande', 219)">
+                                <div style="font-size: 1.5rem; font-weight: 700;">L</div>
+                                <div style="font-size: 0.8rem; margin-top: 0.3rem;">Grande</div>
+                                <div style="font-weight: 600; margin-top: 0.3rem;">$219</div>
+                            </div>
+                            <div class="size-option" onclick="seleccionarTamano(this, 'Familiar', 289)">
+                                <div style="font-size: 1.5rem; font-weight: 700;">XL</div>
+                                <div style="font-size: 0.8rem; margin-top: 0.3rem;">Familiar</div>
+                                <div style="font-weight: 600; margin-top: 0.3rem;">$289</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ingredientes -->
+                    <div style="margin-top: 2rem;">
+                        <h3 style="margin-bottom: 1rem;">Ingredientes:</h3>
+                        <div class="ingredientes-lista">
+                            <div class="ingrediente-item">✅ Salsa de tomate</div>
+                            <div class="ingrediente-item">✅ Mozzarella fresca</div>
+                            <div class="ingrediente-item">✅ Albahaca</div>
+                            <div class="ingrediente-item">✅ Aceite de oliva</div>
+                        </div>
+                    </div>
+
+                    <!-- Selector de Cantidad -->
+                    <div style="margin-top: 2rem;">
+                        <h3 style="margin-bottom: 1rem;">Cantidad:</h3>
+                        <div class="quantity-controls" style="gap: 1rem;">
+                            <button onclick="cambiarCantidad(-1)" style="width: 40px; height: 40px; font-size: 1.2rem;">-</button>
+                            <span id="cantidad" style="font-size: 1.5rem; font-weight: 700; min-width: 40px; text-align: center;">1</span>
+                            <button onclick="cambiarCantidad(1)" style="width: 40px; height: 40px; font-size: 1.2rem;">+</button>
+                        </div>
+                    </div>
+
+                    <!-- Botón Agregar al Carrito -->
+                    <button class="btn btn-primary" onclick="agregarAlCarrito()" style="width: 100%; padding: 1.2rem; margin-top: 2rem; font-size: 1.1rem;">
+                        Agregar al Carrito
+                    </button>
+
+                    <!-- Información Adicional -->
+                    <div style="margin-top: 2rem; padding: 1rem; background: var(--gris-claro); border-radius: 10px;">
+                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 0.5rem;">🚚 Entrega en 30-45 minutos</p>
+                        <p style="font-size: 0.9rem; color: #666;">⭐ 4.8/5 - 1,234 reseñas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let tamanoSeleccionado = 'Mediana';
+        let precioSeleccionado = 159;
+        let cantidadSeleccionada = 1;
+
+        function seleccionarTamano(elemento, tamano, precio) {
+            // Remover clase active de todos
+            document.querySelectorAll('.size-option').forEach(el => el.classList.remove('active'));
+
+            // Agregar clase active al seleccionado
+            elemento.classList.add('active');
+
+            // Actualizar variables
+            tamanoSeleccionado = tamano;
+            precioSeleccionado = precio;
+        }
+
+        function cambiarCantidad(delta) {
+            cantidadSeleccionada = Math.max(1, cantidadSeleccionada + delta);
+            document.getElementById('cantidad').textContent = cantidadSeleccionada;
+        }
+
+        function agregarAlCarrito() {
+            let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+
+            carrito.push({
+                nombre: `Pizza Margarita - ${tamanoSeleccionado}`,
+                precio: precioSeleccionado,
+                cantidad: cantidadSeleccionada,
+                tipo: 'pizza'
+            });
+
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            alert(`${cantidadSeleccionada} Pizza(s) Margarita ${tamanoSeleccionado} agregada(s) al carrito`);
+            window.location.href = 'carrito.html';
+        }
+
+        // Actualizar contador del carrito al cargar
+        function actualizarContadorCarrito() {
+            let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+            const btnCarrito = document.querySelector('.btn-user');
+            if (btnCarrito) {
+                btnCarrito.innerHTML = `🛒 Carrito (${carrito.length})`;
+            }
+        }
+
+        actualizarContadorCarrito();
+    </script>
+</body>
+</html>
