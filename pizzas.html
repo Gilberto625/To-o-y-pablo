@@ -410,9 +410,8 @@
         }
 
         function personalizarPizza(nombre, pizzaId) {
-            const seleccion = pizzasSeleccionadas[pizzaId];
-            // Redirigir a página de personalización (detalle-pizza.html)
-            window.location.href = `detalle-pizza.html?nombre=${encodeURIComponent(nombre)}&tamano=${seleccion.tamano}&precio=${seleccion.precio}`;
+            // Redirigir a página de personalización (detalle-pizza.html) con el ID de la pizza
+            window.location.href = `detalle-pizza.html?pizza=${pizzaId}`;
         }
 
         function agregarRapido(pizzaId) {

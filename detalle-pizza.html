@@ -3,86 +3,257 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PizzaMya - Detalle Pizza</title>
+    <title>PizzaMya - Personalizar Pizza</title>
     <link rel="stylesheet" href="css/styles.css">
     <style>
+        .detalle-wrapper {
+            background: linear-gradient(135deg, rgba(255, 95, 6, 0.05), rgba(219, 27, 38, 0.05));
+            min-height: 100vh;
+            padding-bottom: 3rem;
+        }
+
+        .header-banner {
+            background: linear-gradient(135deg, var(--naranja-primary), var(--rojo-primary));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header-banner h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
         .detalle-container {
-            max-width: 1000px;
-            margin: 2rem auto;
+            max-width: 500px;
+            margin: 0 auto;
             background: white;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .detalle-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
         }
 
         .imagen-detalle {
             width: 100%;
-            height: 400px;
+            height: 300px;
             background: linear-gradient(135deg, var(--naranja-primary), var(--rojo-primary));
-            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 10rem;
+            font-size: 8rem;
+        }
+
+        .detalle-content {
+            padding: 2rem;
+        }
+
+        .pizza-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--negro);
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .pizza-description {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .precio-base {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--rojo-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .precio-subtitle {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .seccion-titulo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--negro);
+            margin-bottom: 1rem;
         }
 
         .size-selector {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            margin: 1.5rem 0;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
         }
 
         .size-option {
-            padding: 1rem;
-            border: 2px solid #ddd;
-            border-radius: 10px;
+            padding: 1rem 0.5rem;
+            border: 3px solid #e0e0e0;
+            border-radius: 12px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s;
+            background: white;
         }
 
         .size-option:hover {
             border-color: var(--naranja-primary);
+            transform: translateY(-3px);
         }
 
         .size-option.active {
             border-color: var(--naranja-primary);
             background: var(--naranja-primary);
             color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 95, 6, 0.3);
         }
 
-        .ingredientes-lista {
+        .size-letter {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .size-name {
+            font-size: 0.75rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .size-price {
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .ingredientes-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 0.5rem;
-            margin: 1rem 0;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
         }
 
-        .ingrediente-item {
+        .ingrediente-checkbox {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem;
-            background: var(--gris-claro);
-            border-radius: 8px;
+            gap: 0.8rem;
+            padding: 0.8rem;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .ingrediente-checkbox:hover {
+            background: #e9ecef;
+        }
+
+        .ingrediente-checkbox input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--naranja-primary);
+        }
+
+        .ingrediente-label {
+            font-size: 0.9rem;
+            color: var(--negro);
+            font-weight: 500;
+        }
+
+        .cantidad-section {
+            margin-bottom: 2rem;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .quantity-controls button {
+            width: 50px;
+            height: 50px;
+            border: none;
+            background: var(--naranja-primary);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quantity-controls button:hover {
+            background: #e55505;
+            transform: scale(1.1);
+        }
+
+        .quantity-display {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--negro);
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .btn-agregar-carrito {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--naranja-primary);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-agregar-carrito:hover {
+            background: #e55505;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 95, 6, 0.4);
+        }
+
+        .info-adicional {
+            background: linear-gradient(135deg, rgba(255, 95, 6, 0.1), rgba(219, 27, 38, 0.1));
+            padding: 1rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--naranja-primary);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
         }
 
         @media (max-width: 768px) {
-            .detalle-grid {
+            .size-selector {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .ingredientes-grid {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
-<body>
+<body class="detalle-wrapper">
     <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">
@@ -99,91 +270,104 @@
         </div>
     </nav>
 
-    <div class="container">
-        <div style="margin-bottom: 2rem;">
-            <a href="pizzas.html" style="color: var(--naranja-primary); text-decoration: none; font-weight: 600;">← Volver a Pizzas</a>
-        </div>
+    <!-- Breadcrumb -->
+    <div class="container" style="padding-top: 1.5rem;">
+        <a href="pizzas.html" style="color: var(--naranja-primary); text-decoration: none; font-weight: 600; font-size: 1rem;">
+            ← Volver a Pizzas
+        </a>
+    </div>
 
+    <!-- Contenedor Principal -->
+    <div class="container" style="padding-top: 2rem;">
         <div class="detalle-container">
-            <div class="detalle-grid">
-                <!-- Imagen del Producto -->
-                <div>
-                    <div class="imagen-detalle">
-                        🍕
+            <!-- Imagen Pizza -->
+            <div class="imagen-detalle">
+                🍕
+            </div>
+
+            <!-- Contenido -->
+            <div class="detalle-content">
+                <!-- Título y Descripción -->
+                <h1 class="pizza-title" id="pizza-nombre">Pizza Margarita</h1>
+                <p class="pizza-description" id="pizza-descripcion">
+                    La clásica pizza italiana con salsa de tomate fresca, mozzarella de la mejor calidad,
+                    albahaca aromática y un toque de aceite de oliva extra virgen.
+                </p>
+
+                <!-- Precio -->
+                <div class="precio-base" id="precio-mostrado">$159</div>
+                <p class="precio-subtitle">Precio base - Tamaño mediana</p>
+
+                <!-- Selector de Tamaño -->
+                <h3 class="seccion-titulo">Selecciona el tamaño:</h3>
+                <div class="size-selector" id="size-selector">
+                    <div class="size-option" onclick="seleccionarTamano(this, 'S', 'Chica', 129)">
+                        <div class="size-letter">S</div>
+                        <div class="size-name">Chica</div>
+                        <div class="size-price">$129</div>
+                    </div>
+                    <div class="size-option active" onclick="seleccionarTamano(this, 'M', 'Mediana', 159)">
+                        <div class="size-letter">M</div>
+                        <div class="size-name">Mediana</div>
+                        <div class="size-price">$159</div>
+                    </div>
+                    <div class="size-option" onclick="seleccionarTamano(this, 'L', 'Grande', 219)">
+                        <div class="size-letter">L</div>
+                        <div class="size-name">Grande</div>
+                        <div class="size-price">$219</div>
+                    </div>
+                    <div class="size-option" onclick="seleccionarTamano(this, 'XL', 'Familiar', 289)">
+                        <div class="size-letter">XL</div>
+                        <div class="size-name">Familiar</div>
+                        <div class="size-price">$289</div>
                     </div>
                 </div>
 
-                <!-- Información del Producto -->
-                <div>
-                    <h1 style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--negro);">Pizza Margarita</h1>
-                    <p style="color: #666; font-size: 1.1rem; line-height: 1.6; margin-bottom: 1.5rem;">
-                        La clásica pizza italiana con salsa de tomate fresca, mozzarella de la mejor calidad,
-                        albahaca aromática y un toque de aceite de oliva extra virgen.
-                    </p>
+                <!-- Ingredientes -->
+                <h3 class="seccion-titulo">Ingredientes:</h3>
+                <div class="ingredientes-grid" id="ingredientes-grid">
+                    <label class="ingrediente-checkbox">
+                        <input type="checkbox" checked>
+                        <span class="ingrediente-label">Salsa de tomate</span>
+                    </label>
+                    <label class="ingrediente-checkbox">
+                        <input type="checkbox" checked>
+                        <span class="ingrediente-label">Mozzarella fresca</span>
+                    </label>
+                    <label class="ingrediente-checkbox">
+                        <input type="checkbox" checked>
+                        <span class="ingrediente-label">Albahaca</span>
+                    </label>
+                    <label class="ingrediente-checkbox">
+                        <input type="checkbox" checked>
+                        <span class="ingrediente-label">Aceite de oliva</span>
+                    </label>
+                </div>
 
-                    <!-- Precio -->
-                    <div style="margin-bottom: 2rem;">
-                        <p class="product-price" style="font-size: 2.5rem; margin-bottom: 0.5rem;">$159</p>
-                        <p style="color: #666; font-size: 0.9rem;">Precio base - Tamaño mediana</p>
+                <!-- Selector de Cantidad -->
+                <h3 class="seccion-titulo">Cantidad:</h3>
+                <div class="cantidad-section">
+                    <div class="quantity-controls">
+                        <button onclick="cambiarCantidad(-1)">-</button>
+                        <span class="quantity-display" id="cantidad">1</span>
+                        <button onclick="cambiarCantidad(1)">+</button>
                     </div>
+                </div>
 
-                    <!-- Selector de Tamaño -->
-                    <div>
-                        <h3 style="margin-bottom: 1rem;">Selecciona el tamaño:</h3>
-                        <div class="size-selector">
-                            <div class="size-option" onclick="seleccionarTamano(this, 'Chica', 129)">
-                                <div style="font-size: 1.5rem; font-weight: 700;">S</div>
-                                <div style="font-size: 0.8rem; margin-top: 0.3rem;">Chica</div>
-                                <div style="font-weight: 600; margin-top: 0.3rem;">$129</div>
-                            </div>
-                            <div class="size-option active" onclick="seleccionarTamano(this, 'Mediana', 159)">
-                                <div style="font-size: 1.5rem; font-weight: 700;">M</div>
-                                <div style="font-size: 0.8rem; margin-top: 0.3rem;">Mediana</div>
-                                <div style="font-weight: 600; margin-top: 0.3rem;">$159</div>
-                            </div>
-                            <div class="size-option" onclick="seleccionarTamano(this, 'Grande', 219)">
-                                <div style="font-size: 1.5rem; font-weight: 700;">L</div>
-                                <div style="font-size: 0.8rem; margin-top: 0.3rem;">Grande</div>
-                                <div style="font-weight: 600; margin-top: 0.3rem;">$219</div>
-                            </div>
-                            <div class="size-option" onclick="seleccionarTamano(this, 'Familiar', 289)">
-                                <div style="font-size: 1.5rem; font-weight: 700;">XL</div>
-                                <div style="font-size: 0.8rem; margin-top: 0.3rem;">Familiar</div>
-                                <div style="font-weight: 600; margin-top: 0.3rem;">$289</div>
-                            </div>
-                        </div>
+                <!-- Botón Agregar al Carrito -->
+                <button class="btn-agregar-carrito" onclick="agregarAlCarrito()">
+                    Agregar al Carrito
+                </button>
+
+                <!-- Información Adicional -->
+                <div class="info-adicional">
+                    <div class="info-item">
+                        <span>🚚</span>
+                        <span>Entrega en 30-45 minutos</span>
                     </div>
-
-                    <!-- Ingredientes -->
-                    <div style="margin-top: 2rem;">
-                        <h3 style="margin-bottom: 1rem;">Ingredientes:</h3>
-                        <div class="ingredientes-lista">
-                            <div class="ingrediente-item">✅ Salsa de tomate</div>
-                            <div class="ingrediente-item">✅ Mozzarella fresca</div>
-                            <div class="ingrediente-item">✅ Albahaca</div>
-                            <div class="ingrediente-item">✅ Aceite de oliva</div>
-                        </div>
-                    </div>
-
-                    <!-- Selector de Cantidad -->
-                    <div style="margin-top: 2rem;">
-                        <h3 style="margin-bottom: 1rem;">Cantidad:</h3>
-                        <div class="quantity-controls" style="gap: 1rem;">
-                            <button onclick="cambiarCantidad(-1)" style="width: 40px; height: 40px; font-size: 1.2rem;">-</button>
-                            <span id="cantidad" style="font-size: 1.5rem; font-weight: 700; min-width: 40px; text-align: center;">1</span>
-                            <button onclick="cambiarCantidad(1)" style="width: 40px; height: 40px; font-size: 1.2rem;">+</button>
-                        </div>
-                    </div>
-
-                    <!-- Botón Agregar al Carrito -->
-                    <button class="btn btn-primary" onclick="agregarAlCarrito()" style="width: 100%; padding: 1.2rem; margin-top: 2rem; font-size: 1.1rem;">
-                        Agregar al Carrito
-                    </button>
-
-                    <!-- Información Adicional -->
-                    <div style="margin-top: 2rem; padding: 1rem; background: var(--gris-claro); border-radius: 10px;">
-                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 0.5rem;">🚚 Entrega en 30-45 minutos</p>
-                        <p style="font-size: 0.9rem; color: #666;">⭐ 4.8/5 - 1,234 reseñas</p>
+                    <div class="info-item">
+                        <span>⭐</span>
+                        <span>4.8/5 - 1,234 reseñas</span>
                     </div>
                 </div>
             </div>
@@ -191,11 +375,105 @@
     </div>
 
     <script>
+        // Base de datos de pizzas
+        const pizzasDB = {
+            'pepperoni': {
+                nombre: 'Pizza Pepperoni',
+                descripcion: 'Deliciosa pizza con pepperoni de primera calidad y queso mozzarella fundido sobre una base de salsa de tomate casera.',
+                ingredientes: ['Pepperoni', 'Queso Mozzarella', 'Salsa de Tomate', 'Orégano'],
+                precios: { 'Individual': 99, 'Mediana': 189, 'Grande': 249, 'Jumbo': 319 }
+            },
+            'margarita': {
+                nombre: 'Pizza Margarita',
+                descripcion: 'La clásica pizza italiana con salsa de tomate fresca, mozzarella de la mejor calidad, albahaca aromática y un toque de aceite de oliva extra virgen.',
+                ingredientes: ['Salsa de tomate', 'Mozzarella fresca', 'Albahaca', 'Aceite de oliva'],
+                precios: { 'Individual': 89, 'Mediana': 159, 'Grande': 219, 'Jumbo': 289 }
+            },
+            'hawaiana': {
+                nombre: 'Pizza Hawaiana',
+                descripcion: 'La combinación perfecta de jamón y piña con queso derretido sobre salsa de tomate. Un clásico que divide opiniones pero conquista paladares.',
+                ingredientes: ['Jamón', 'Piña', 'Queso Mozzarella', 'Salsa de Tomate'],
+                precios: { 'Individual': 99, 'Mediana': 179, 'Grande': 239, 'Jumbo': 299 }
+            },
+            'vegetariana': {
+                nombre: 'Pizza Vegetariana',
+                descripcion: 'Pizza llena de vegetales frescos y queso mozzarella. Perfecta para los amantes de las verduras.',
+                ingredientes: ['Pimientos', 'Champiñones', 'Cebolla', 'Aceitunas', 'Tomate', 'Queso Mozzarella'],
+                precios: { 'Individual': 109, 'Mediana': 199, 'Grande': 259, 'Jumbo': 329 }
+            },
+            'cuatro-quesos': {
+                nombre: 'Pizza Cuatro Quesos',
+                descripcion: 'Una experiencia cremosa con cuatro variedades de queso: mozzarella, parmesano, gorgonzola y queso de cabra.',
+                ingredientes: ['Mozzarella', 'Parmesano', 'Gorgonzola', 'Queso de cabra'],
+                precios: { 'Individual': 119, 'Mediana': 219, 'Grande': 289, 'Jumbo': 359 }
+            },
+            'mexicana': {
+                nombre: 'Pizza Mexicana',
+                descripcion: 'Sabor picante con ingredientes mexicanos auténticos. Carne molida, jalapeños, cebolla y especias que te transportarán a México.',
+                ingredientes: ['Carne molida', 'Jalapeños', 'Cebolla', 'Tomate', 'Chile', 'Queso Mozzarella'],
+                precios: { 'Individual': 109, 'Mediana': 209, 'Grande': 269, 'Jumbo': 339 }
+            }
+        };
+
+        // Variables globales
+        let pizzaActual = null;
         let tamanoSeleccionado = 'Mediana';
         let precioSeleccionado = 159;
         let cantidadSeleccionada = 1;
 
-        function seleccionarTamano(elemento, tamano, precio) {
+        // Cargar datos de la pizza desde URL
+        function cargarDatosPizza() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const pizzaId = urlParams.get('pizza') || 'margarita';
+
+            pizzaActual = pizzasDB[pizzaId] || pizzasDB['margarita'];
+
+            // Actualizar nombre y descripción
+            document.getElementById('pizza-nombre').textContent = pizzaActual.nombre;
+            document.getElementById('pizza-descripcion').textContent = pizzaActual.descripcion;
+
+            // Actualizar ingredientes
+            const ingredientesGrid = document.getElementById('ingredientes-grid');
+            ingredientesGrid.innerHTML = '';
+            pizzaActual.ingredientes.forEach(ing => {
+                const label = document.createElement('label');
+                label.className = 'ingrediente-checkbox';
+                label.innerHTML = `
+                    <input type="checkbox" checked>
+                    <span class="ingrediente-label">${ing}</span>
+                `;
+                ingredientesGrid.appendChild(label);
+            });
+
+            // Actualizar selector de tamaños
+            const sizeSelector = document.getElementById('size-selector');
+            sizeSelector.innerHTML = '';
+            const tamanos = [
+                { letra: 'S', nombre: 'Individual', key: 'Individual' },
+                { letra: 'M', nombre: 'Mediana', key: 'Mediana' },
+                { letra: 'L', nombre: 'Grande', key: 'Grande' },
+                { letra: 'XL', nombre: 'Jumbo', key: 'Jumbo' }
+            ];
+
+            tamanos.forEach((t, index) => {
+                const precio = pizzaActual.precios[t.key];
+                const div = document.createElement('div');
+                div.className = 'size-option' + (index === 1 ? ' active' : '');
+                div.onclick = () => seleccionarTamano(div, t.letra, t.nombre, precio);
+                div.innerHTML = `
+                    <div class="size-letter">${t.letra}</div>
+                    <div class="size-name">${t.nombre}</div>
+                    <div class="size-price">$${precio}</div>
+                `;
+                sizeSelector.appendChild(div);
+            });
+
+            // Establecer precio inicial (Mediana)
+            precioSeleccionado = pizzaActual.precios['Mediana'];
+            document.getElementById('precio-mostrado').textContent = '$' + precioSeleccionado;
+        }
+
+        function seleccionarTamano(elemento, letra, nombre, precio) {
             // Remover clase active de todos
             document.querySelectorAll('.size-option').forEach(el => el.classList.remove('active'));
 
@@ -203,8 +481,11 @@
             elemento.classList.add('active');
 
             // Actualizar variables
-            tamanoSeleccionado = tamano;
+            tamanoSeleccionado = nombre;
             precioSeleccionado = precio;
+
+            // Actualizar precio mostrado
+            document.getElementById('precio-mostrado').textContent = '$' + precio;
         }
 
         function cambiarCantidad(delta) {
@@ -213,17 +494,28 @@
         }
 
         function agregarAlCarrito() {
+            // Obtener ingredientes seleccionados
+            const ingredientesSeleccionados = [];
+            document.querySelectorAll('.ingrediente-checkbox input[type="checkbox"]:checked').forEach(checkbox => {
+                const label = checkbox.nextElementSibling.textContent;
+                ingredientesSeleccionados.push(label);
+            });
+
             let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
 
             carrito.push({
-                nombre: `Pizza Margarita - ${tamanoSeleccionado}`,
+                nombre: `${pizzaActual.nombre} - ${tamanoSeleccionado}`,
                 precio: precioSeleccionado,
                 cantidad: cantidadSeleccionada,
-                tipo: 'pizza'
+                tipo: 'pizza',
+                tamano: tamanoSeleccionado,
+                ingredientes: ingredientesSeleccionados
             });
 
             localStorage.setItem('carrito', JSON.stringify(carrito));
-            alert(`${cantidadSeleccionada} Pizza(s) Margarita ${tamanoSeleccionado} agregada(s) al carrito`);
+
+            // Mostrar notificación
+            alert(`${cantidadSeleccionada} ${pizzaActual.nombre} ${tamanoSeleccionado} agregada(s) al carrito`);
             window.location.href = 'carrito.html';
         }
 
@@ -236,7 +528,11 @@
             }
         }
 
-        actualizarContadorCarrito();
+        // Inicializar al cargar la página
+        window.addEventListener('DOMContentLoaded', () => {
+            cargarDatosPizza();
+            actualizarContadorCarrito();
+        });
     </script>
 </body>
 </html>
