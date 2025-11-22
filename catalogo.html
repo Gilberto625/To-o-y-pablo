@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PizzaMya - Catálogo</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <h1>pizza<span style="color: var(--rojo-primary);">M</span>ya</h1>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html">Menú</a></li>
+            <li><a href="ordena.html">Ordena</a></li>
+            <li><a href="mi-pedido.html">Mi pedido</a></li>
+            <li><a href="combos.html">Combos</a></li>
+        </ul>
+        <div class="user-section">
+            <button class="btn-user" onclick="window.location.href='carrito.html'">🛒 Carrito (0)</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header Section -->
+        <div style="background: linear-gradient(135deg, var(--naranja-primary), var(--rojo-primary)); color: white; padding: 2rem; border-radius: 15px; margin-bottom: 2rem; text-align: center;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">🍕 Catálogo Completo</h1>
+            <p style="font-size: 1.1rem;">Descubre todas nuestras deliciosas opciones</p>
+        </div>
+
+        <!-- Categorías -->
+        <section style="margin-bottom: 3rem;">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: var(--negro);">Explora Nuestro Menú</h2>
+            <div class="product-grid">
+                <!-- Card Pizzas -->
+                <div class="product-card" onclick="window.location.href='pizzas.html'">
+                    <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem;">
+                        🍕
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Pizzas</h3>
+                        <p class="product-description">Deliciosas pizzas artesanales con variedad de ingredientes</p>
+                        <p class="product-price">Desde $89</p>
+                        <button class="btn btn-primary" style="width: 100%;">Ver Pizzas</button>
+                    </div>
+                </div>
+
+                <!-- Card Bebidas -->
+                <div class="product-card" onclick="window.location.href='bebidas.html'">
+                    <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem;">
+                        🥤
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Bebidas</h3>
+                        <p class="product-description">Refrescos, jugos y bebidas para acompañar tu pizza</p>
+                        <p class="product-price">Desde $15</p>
+                        <button class="btn btn-primary" style="width: 100%;">Ver Bebidas</button>
+                    </div>
+                </div>
+
+                <!-- Card Combos -->
+                <div class="product-card" onclick="window.location.href='combos.html'">
+                    <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem;">
+                        🎉
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Combos</h3>
+                        <p class="product-description">Ofertas especiales y combos familiares</p>
+                        <p class="product-price">Desde $169</p>
+                        <button class="btn btn-secondary" style="width: 100%;">Ver Combos</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pizzas Destacadas -->
+        <section>
+            <h2 style="text-align: center; margin-bottom: 2rem; color: var(--negro);">Pizzas Más Vendidas</h2>
+            <div class="product-grid">
+                <!-- Mini cards de pizzas -->
+                <div class="product-card">
+                    <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+                        🍕
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Pizza Pepperoni</h3>
+                        <p class="product-description">La favorita de todos</p>
+                        <p class="product-price">Desde $99</p>
+                        <button class="btn btn-primary" onclick="window.location.href='pizzas.html'" style="width: 100%;">Ordenar</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+                        🍕
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Pizza Margarita</h3>
+                        <p class="product-description">Clásica italiana</p>
+                        <p class="product-price">Desde $89</p>
+                        <button class="btn btn-primary" onclick="window.location.href='pizzas.html'" style="width: 100%;">Ordenar</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+                        🍕
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Pizza Hawaiana</h3>
+                        <p class="product-description">Jamón y piña</p>
+                        <p class="product-price">Desde $99</p>
+                        <button class="btn btn-primary" onclick="window.location.href='pizzas.html'" style="width: 100%;">Ordenar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        actualizarContadorCarrito();
+    </script>
+</body>
+</html>

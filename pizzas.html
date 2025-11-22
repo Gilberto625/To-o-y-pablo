@@ -5,6 +5,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PizzaMya - Pizzas</title>
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .pizza-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .pizza-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .pizza-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(135deg, var(--naranja-primary), var(--rojo-primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+        }
+
+        .pizza-content {
+            padding: 1.5rem;
+        }
+
+        .pizza-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--negro);
+            margin-bottom: 0.5rem;
+        }
+
+        .pizza-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .pizza-ingredients {
+            color: #999;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .size-selector {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .size-btn {
+            flex: 1;
+            padding: 0.6rem;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .size-btn:hover {
+            border-color: var(--naranja-primary);
+        }
+
+        .size-btn.active {
+            border-color: var(--naranja-primary);
+            background: var(--naranja-primary);
+            color: white;
+        }
+
+        .size-name {
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .size-price {
+            font-size: 0.9rem;
+            margin-top: 0.2rem;
+        }
+
+        .pizza-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--rojo-primary);
+            margin-bottom: 1rem;
+        }
+
+        .pizza-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-personalizar {
+            flex: 1;
+            padding: 0.8rem;
+            background: white;
+            color: var(--naranja-primary);
+            border: 2px solid var(--naranja-primary);
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-personalizar:hover {
+            background: var(--naranja-primary);
+            color: white;
+        }
+
+        .btn-agregar {
+            flex: 1;
+            padding: 0.8rem;
+            background: var(--naranja-primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-agregar:hover {
+            background: #e55505;
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -30,118 +162,221 @@
             <p style="font-size: 1.1rem;">Pizzas artesanales hechas con los mejores ingredientes</p>
         </div>
 
-        <!-- Filtros -->
-        <div style="background: white; padding: 1.5rem; border-radius: 15px; margin-bottom: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
-            <label style="font-weight: 600;">Filtrar por:</label>
-            <select style="padding: 0.5rem 1rem; border: 2px solid #ddd; border-radius: 10px; cursor: pointer;">
-                <option>Todas</option>
-                <option>Clásicas</option>
-                <option>Especiales</option>
-                <option>Vegetarianas</option>
-            </select>
-            <select style="padding: 0.5rem 1rem; border: 2px solid #ddd; border-radius: 10px; cursor: pointer;">
-                <option>Todos los tamaños</option>
-                <option>Chica</option>
-                <option>Mediana</option>
-                <option>Grande</option>
-                <option>Familiar</option>
-            </select>
-        </div>
-
         <!-- Grid de Pizzas -->
         <div class="product-grid">
-            <!-- Pizza 1 -->
-            <div class="product-card">
-                <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem;">
-                    🍕
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Pizza Margarita</h3>
-                    <p class="product-description">Salsa de tomate, mozzarella fresca, albahaca y aceite de oliva</p>
-                    <p class="product-price">$159</p>
-                    <div style="display: flex; gap: 0.5rem;">
-                        <button class="btn btn-outline" style="flex: 1;" onclick="window.location.href='detalle-pizza.html?id=1'">Ver Detalle</button>
-                        <button class="btn btn-primary" style="flex: 1;" onclick="agregarAlCarrito('Pizza Margarita', 159)">Agregar</button>
+            <!-- Pizza Pepperoni -->
+            <div class="pizza-card">
+                <div class="pizza-image">🍕</div>
+                <div class="pizza-content">
+                    <h3 class="pizza-title">Pizza Pepperoni</h3>
+                    <p class="pizza-description">Deliciosa pizza con pepperoni de primera calidad y queso mozzarella</p>
+                    <p class="pizza-ingredients">Ingredientes: Pepperoni, Queso Mozzarella, Salsa de Tomate</p>
+
+                    <!-- Selector de Tamaño -->
+                    <div class="size-selector">
+                        <button class="size-btn" onclick="seleccionarTamano(this, 'pepperoni', 'Individual', 99)">
+                            <div class="size-name">Individual</div>
+                            <div class="size-price">$99</div>
+                        </button>
+                        <button class="size-btn active" onclick="seleccionarTamano(this, 'pepperoni', 'Mediana', 189)">
+                            <div class="size-name">Mediana</div>
+                            <div class="size-price">$189</div>
+                        </button>
+                        <button class="size-btn" onclick="seleccionarTamano(this, 'pepperoni', 'Grande', 249)">
+                            <div class="size-name">Grande</div>
+                            <div class="size-price">$249</div>
+                        </button>
+                        <button class="size-btn" onclick="seleccionarTamano(this, 'pepperoni', 'Jumbo', 319)">
+                            <div class="size-name">Jumbo</div>
+                            <div class="size-price">$319</div>
+                        </button>
+                    </div>
+
+                    <div class="pizza-price" id="precio-pepperoni">$189</div>
+
+                    <div class="pizza-actions">
+                        <button class="btn-personalizar" onclick="personalizarPizza('Pizza Pepperoni', 'pepperoni')">Personalizar Pizza</button>
+                        <button class="btn-agregar" onclick="agregarRapido('pepperoni')">Agregar</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Pizza 2 -->
-            <div class="product-card">
-                <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem;">
-                    🍕
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Pizza Pepperoni</h3>
-                    <p class="product-description">Salsa de tomate, mozzarella y abundante pepperoni</p>
-                    <p class="product-price">$189</p>
-                    <div style="display: flex; gap: 0.5rem;">
-                        <button class="btn btn-outline" style="flex: 1;" onclick="window.location.href='detalle-pizza.html?id=2'">Ver Detalle</button>
-                        <button class="btn btn-primary" style="flex: 1;" onclick="agregarAlCarrito('Pizza Pepperoni', 189)">Agregar</button>
+            <!-- Pizza Margarita -->
+            <div class="pizza-card">
+                <div class="pizza-image">🍕</div>
+                <div class="pizza-content">
+                    <h3 class="pizza-title">Pizza Margarita</h3>
+                    <p class="pizza-description">La clásica pizza italiana con ingredientes frescos y naturales</p>
+                    <p class="pizza-ingredients">Ingredientes: Salsa de tomate, Mozzarella fresca, Albahaca</p>
+
+                    <div class="size-selector">
+                        <button class="size-btn" onclick="seleccionarTamano(this, 'margarita', 'Individual', 89)">
+                            <div class="size-name">Individual</div>
+                            <div class="size-price">$89</div>
+                        </button>
+                        <button class="size-btn active" onclick="seleccionarTamano(this, 'margarita', 'Mediana', 159)">
+                            <div class="size-name">Mediana</div>
+                            <div class="size-price">$159</div>
+                        </button>
+                        <button class="size-btn" onclick="seleccionarTamano(this, 'margarita', 'Grande', 219)">
+                            <div class="size-name">Grande</div>
+                            <div class="size-price">$219</div>
+                        </button>
+                        <button class="size-btn" onclick="seleccionarTamano(this, 'margarita', 'Jumbo', 289)">
+                            <div class="size-name">Jumbo</div>
+                            <div class="size-price">$289</div>
+                        </button>
+                    </div>
+
+                    <div class="pizza-price" id="precio-margarita">$159</div>
+
+                    <div class="pizza-actions">
+                        <button class="btn-personalizar" onclick="personalizarPizza('Pizza Margarita', 'margarita')">Personalizar Pizza</button>
+                        <button class="btn-agregar" onclick="agregarRapido('margarita')">Agregar</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Pizza 3 -->
-            <div class="product-card">
-                <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem;">
-                    🍕
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Pizza Hawaiana</h3>
-                    <p class="product-description">Salsa de tomate, mozzarella, jamón y piña</p>
-                    <p class="product-price">$179</p>
-                    <div style="display: flex; gap: 0.5rem;">
-                        <button class="btn btn-outline" style="flex: 1;" onclick="window.location.href='detalle-pizza.html?id=3'">Ver Detalle</button>
-                        <button class="btn btn-primary" style="flex: 1;" onclick="agregarAlCarrito('Pizza Hawaiana', 179)">Agregar</button>
+            <!-- Pizza Hawaiana -->
+            <div class="pizza-card">
+                <div class="pizza-image">🍕</div>
+                <div class="pizza-content">
+                    <h3 class="pizza-title">Pizza Hawaiana</h3>
+                    <p class="pizza-description">La combinación perfecta de jamón y piña con queso derretido</p>
+                    <p class="pizza-ingredients">Ingredientes: Jamón, Piña, Mozzarella, Salsa de tomate</p>
+
+                    <div class="size-selector">
+                        <button class="size-btn" onclick="seleccionarTamano(this, 'hawaiana', 'Individual', 99)">
+                            <div class="size-name">Individual</div>
+                            <div class="size-price">$99</div>
+                        </button>
+                        <button class="size-btn active" onclick="seleccionarTamano(this, 'hawaiana', 'Mediana', 179)">
+                            <div class="size-name">Mediana</div>
+                            <div class="size-price">$179</div>
+                        </button>
+                        <button class="size-btn" onclick="seleccionarTamano(this, 'hawaiana', 'Grande', 239)">
+                            <div class="size-name">Grande</div>
+                            <div class="size-price">$239</div>
+                        </button>
+                        <button class="size-btn" onclick="seleccionarTamano(this, 'hawaiana', 'Jumbo', 299)">
+                            <div class="size-name">Jumbo</div>
+                            <div class="size-price">$299</div>
+                        </button>
+                    </div>
+
+                    <div class="pizza-price" id="precio-hawaiana">$179</div>
+
+                    <div class="pizza-actions">
+                        <button class="btn-personalizar" onclick="personalizarPizza('Pizza Hawaiana', 'hawaiana')">Personalizar Pizza</button>
+                        <button class="btn-agregar" onclick="agregarRapido('hawaiana')">Agregar</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Pizza 4 -->
-            <div class="product-card">
-                <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem;">
-                    🍕
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Pizza Cuatro Quesos</h3>
-                    <p class="product-description">Mozzarella, parmesano, gorgonzola y queso de cabra</p>
-                    <p class="product-price">$219</p>
-                    <div style="display: flex; gap: 0.5rem;">
-                        <button class="btn btn-outline" style="flex: 1;" onclick="window.location.href='detalle-pizza.html?id=4'">Ver Detalle</button>
-                        <button class="btn btn-primary" style="flex: 1;" onclick="agregarAlCarrito('Pizza Cuatro Quesos', 219)">Agregar</button>
+            <!-- Pizza Vegetariana -->
+            <div class="pizza-card">
+                <div class="pizza-image">🍕</div>
+                <div class="pizza-content">
+                    <h3 class="pizza-title">Pizza Vegetariana</h3>
+                    <p class="pizza-description">Cargada de vegetales frescos y deliciosos</p>
+                    <p class="pizza-ingredients">Ingredientes: Pimientos, Champiñones, Cebolla, Aceitunas, Tomate</p>
+
+                    <div class="size-selector">
+                        <button class="size-btn" onclick="seleccionarTamano(this, 'vegetariana', 'Individual', 109)">
+                            <div class="size-name">Individual</div>
+                            <div class="size-price">$109</div>
+                        </button>
+                        <button class="size-btn active" onclick="seleccionarTamano(this, 'vegetariana', 'Mediana', 199)">
+                            <div class="size-name">Mediana</div>
+                            <div class="size-price">$199</div>
+                        </button>
+                        <button class="size-btn" onclick="seleccionarTamano(this, 'vegetariana', 'Grande', 259)">
+                            <div class="size-name">Grande</div>
+                            <div class="size-price">$259</div>
+                        </button>
+                        <button class="size-btn" onclick="seleccionarTamano(this, 'vegetariana', 'Jumbo', 329)">
+                            <div class="size-name">Jumbo</div>
+                            <div class="size-price">$329</div>
+                        </button>
+                    </div>
+
+                    <div class="pizza-price" id="precio-vegetariana">$199</div>
+
+                    <div class="pizza-actions">
+                        <button class="btn-personalizar" onclick="personalizarPizza('Pizza Vegetariana', 'vegetariana')">Personalizar Pizza</button>
+                        <button class="btn-agregar" onclick="agregarRapido('vegetariana')">Agregar</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Pizza 5 -->
-            <div class="product-card">
-                <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem;">
-                    🍕
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Pizza Vegetariana</h3>
-                    <p class="product-description">Pimientos, champiñones, cebolla, aceitunas y tomate</p>
-                    <p class="product-price">$199</p>
-                    <div style="display: flex; gap: 0.5rem;">
-                        <button class="btn btn-outline" style="flex: 1;" onclick="window.location.href='detalle-pizza.html?id=5'">Ver Detalle</button>
-                        <button class="btn btn-primary" style="flex: 1;" onclick="agregarAlCarrito('Pizza Vegetariana', 199)">Agregar</button>
+            <!-- Pizza Cuatro Quesos -->
+            <div class="pizza-card">
+                <div class="pizza-image">🍕</div>
+                <div class="pizza-content">
+                    <h3 class="pizza-title">Pizza Cuatro Quesos</h3>
+                    <p class="pizza-description">Una experiencia cremosa con cuatro variedades de queso</p>
+                    <p class="pizza-ingredients">Ingredientes: Mozzarella, Parmesano, Gorgonzola, Queso de cabra</p>
+
+                    <div class="size-selector">
+                        <button class="size-btn" onclick="seleccionarTamano(this, 'cuatro-quesos', 'Individual', 119)">
+                            <div class="size-name">Individual</div>
+                            <div class="size-price">$119</div>
+                        </button>
+                        <button class="size-btn active" onclick="seleccionarTamano(this, 'cuatro-quesos', 'Mediana', 219)">
+                            <div class="size-name">Mediana</div>
+                            <div class="size-price">$219</div>
+                        </button>
+                        <button class="size-btn" onclick="seleccionarTamano(this, 'cuatro-quesos', 'Grande', 289)">
+                            <div class="size-name">Grande</div>
+                            <div class="size-price">$289</div>
+                        </button>
+                        <button class="size-btn" onclick="seleccionarTamano(this, 'cuatro-quesos', 'Jumbo', 359)">
+                            <div class="size-name">Jumbo</div>
+                            <div class="size-price">$359</div>
+                        </button>
+                    </div>
+
+                    <div class="pizza-price" id="precio-cuatro-quesos">$219</div>
+
+                    <div class="pizza-actions">
+                        <button class="btn-personalizar" onclick="personalizarPizza('Pizza Cuatro Quesos', 'cuatro-quesos')">Personalizar Pizza</button>
+                        <button class="btn-agregar" onclick="agregarRapido('cuatro-quesos')">Agregar</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Pizza 6 -->
-            <div class="product-card">
-                <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem;">
-                    🍕
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Pizza Mexicana</h3>
-                    <p class="product-description">Carne molida, jalapeños, cebolla, tomate y chile</p>
-                    <p class="product-price">$209</p>
-                    <div style="display: flex; gap: 0.5rem;">
-                        <button class="btn btn-outline" style="flex: 1;" onclick="window.location.href='detalle-pizza.html?id=6'">Ver Detalle</button>
-                        <button class="btn btn-primary" style="flex: 1;" onclick="agregarAlCarrito('Pizza Mexicana', 209)">Agregar</button>
+            <!-- Pizza Mexicana -->
+            <div class="pizza-card">
+                <div class="pizza-image">🍕</div>
+                <div class="pizza-content">
+                    <h3 class="pizza-title">Pizza Mexicana</h3>
+                    <p class="pizza-description">Sabor picante con ingredientes mexicanos auténticos</p>
+                    <p class="pizza-ingredients">Ingredientes: Carne molida, Jalapeños, Cebolla, Tomate, Chile</p>
+
+                    <div class="size-selector">
+                        <button class="size-btn" onclick="seleccionarTamano(this, 'mexicana', 'Individual', 109)">
+                            <div class="size-name">Individual</div>
+                            <div class="size-price">$109</div>
+                        </button>
+                        <button class="size-btn active" onclick="seleccionarTamano(this, 'mexicana', 'Mediana', 209)">
+                            <div class="size-name">Mediana</div>
+                            <div class="size-price">$209</div>
+                        </button>
+                        <button class="size-btn" onclick="seleccionarTamano(this, 'mexicana', 'Grande', 269)">
+                            <div class="size-name">Grande</div>
+                            <div class="size-price">$269</div>
+                        </button>
+                        <button class="size-btn" onclick="seleccionarTamano(this, 'mexicana', 'Jumbo', 339)">
+                            <div class="size-name">Jumbo</div>
+                            <div class="size-price">$339</div>
+                        </button>
+                    </div>
+
+                    <div class="pizza-price" id="precio-mexicana">$209</div>
+
+                    <div class="pizza-actions">
+                        <button class="btn-personalizar" onclick="personalizarPizza('Pizza Mexicana', 'mexicana')">Personalizar Pizza</button>
+                        <button class="btn-agregar" onclick="agregarRapido('mexicana')">Agregar</button>
                     </div>
                 </div>
             </div>
@@ -149,23 +384,62 @@
     </div>
 
     <script>
-        function agregarAlCarrito(nombre, precio) {
+        // Objeto para guardar el tamaño y precio seleccionado de cada pizza
+        const pizzasSeleccionadas = {
+            'pepperoni': { tamano: 'Mediana', precio: 189 },
+            'margarita': { tamano: 'Mediana', precio: 159 },
+            'hawaiana': { tamano: 'Mediana', precio: 179 },
+            'vegetariana': { tamano: 'Mediana', precio: 199 },
+            'cuatro-quesos': { tamano: 'Mediana', precio: 219 },
+            'mexicana': { tamano: 'Mediana', precio: 209 }
+        };
+
+        function seleccionarTamano(btn, pizzaId, tamano, precio) {
+            // Remover active de todos los botones de este grupo
+            const parent = btn.parentElement;
+            parent.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+
+            // Agregar active al botón seleccionado
+            btn.classList.add('active');
+
+            // Actualizar precio
+            document.getElementById('precio-' + pizzaId).textContent = '$' + precio;
+
+            // Guardar selección
+            pizzasSeleccionadas[pizzaId] = { tamano: tamano, precio: precio };
+        }
+
+        function personalizarPizza(nombre, pizzaId) {
+            const seleccion = pizzasSeleccionadas[pizzaId];
+            // Redirigir a página de personalización (detalle-pizza.html)
+            window.location.href = `detalle-pizza.html?nombre=${encodeURIComponent(nombre)}&tamano=${seleccion.tamano}&precio=${seleccion.precio}`;
+        }
+
+        function agregarRapido(pizzaId) {
+            const seleccion = pizzasSeleccionadas[pizzaId];
+            const nombrePizza = document.querySelector(`#precio-${pizzaId}`).parentElement.querySelector('.pizza-title').textContent;
+
             // Obtener carrito actual
             let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
 
             // Agregar producto
             carrito.push({
-                nombre: nombre,
-                precio: precio,
+                nombre: `${nombrePizza} - ${seleccion.tamano}`,
+                precio: seleccion.precio,
                 cantidad: 1,
-                tipo: 'pizza'
+                tipo: 'pizza',
+                tamano: seleccion.tamano
             });
 
             // Guardar en localStorage
             localStorage.setItem('carrito', JSON.stringify(carrito));
 
-            // Mostrar confirmación
-            alert(`${nombre} agregada al carrito`);
+            // Mostrar notificación
+            if (window.mostrarNotificacion) {
+                mostrarNotificacion(`${nombrePizza} ${seleccion.tamano} agregada al carrito`, 'success');
+            } else {
+                alert(`${nombrePizza} ${seleccion.tamano} agregada al carrito`);
+            }
 
             // Actualizar contador del carrito
             actualizarContadorCarrito();
@@ -182,5 +456,6 @@
         // Actualizar contador al cargar la página
         actualizarContadorCarrito();
     </script>
+    <script src="js/main.js"></script>
 </body>
 </html>

@@ -71,12 +71,100 @@
             <!-- Los pedidos se cargarán dinámicamente -->
         </div>
 
-        <!-- Estado Vacío -->
-        <div id="pedidosVacio" style="display: none; text-align: center; padding: 4rem 2rem; background: white; border-radius: 15px;">
-            <div style="font-size: 5rem; margin-bottom: 1rem;">📦</div>
-            <h2 style="margin-bottom: 1rem; color: var(--negro);">No tienes pedidos aún</h2>
-            <p style="color: #666; margin-bottom: 2rem;">Haz tu primer pedido y comienza a disfrutar</p>
-            <button class="btn btn-primary" onclick="window.location.href='index.html'">Hacer Pedido</button>
+        <!-- Estado Vacío - Mostrar Catálogo -->
+        <div id="pedidosVacio" style="display: none;">
+            <div style="text-align: center; padding: 2rem; background: white; border-radius: 15px; margin-bottom: 2rem;">
+                <div style="font-size: 4rem; margin-bottom: 1rem;">📦</div>
+                <h2 style="margin-bottom: 1rem; color: var(--negro);">No tienes pedidos aún</h2>
+                <p style="color: #666; margin-bottom: 1.5rem;">Explora nuestro menú y haz tu primer pedido</p>
+            </div>
+
+            <!-- Catálogo de Productos -->
+            <div style="margin-top: 2rem;">
+                <h2 style="text-align: center; margin-bottom: 2rem; color: var(--negro);">Explora Nuestro Menú</h2>
+                <div class="product-grid">
+                    <!-- Card Pizzas -->
+                    <div class="product-card" onclick="window.location.href='pizzas.html'" style="cursor: pointer;">
+                        <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem;">
+                            🍕
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Pizzas</h3>
+                            <p class="product-description">Deliciosas pizzas artesanales con variedad de ingredientes</p>
+                            <p class="product-price">Desde $89</p>
+                            <button class="btn btn-primary" style="width: 100%;">Ver Pizzas</button>
+                        </div>
+                    </div>
+
+                    <!-- Card Bebidas -->
+                    <div class="product-card" onclick="window.location.href='bebidas.html'" style="cursor: pointer;">
+                        <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem;">
+                            🥤
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Bebidas</h3>
+                            <p class="product-description">Refrescos, jugos y bebidas para acompañar tu pizza</p>
+                            <p class="product-price">Desde $15</p>
+                            <button class="btn btn-primary" style="width: 100%;">Ver Bebidas</button>
+                        </div>
+                    </div>
+
+                    <!-- Card Combos -->
+                    <div class="product-card" onclick="window.location.href='combos.html'" style="cursor: pointer;">
+                        <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 5rem;">
+                            🎁
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Combos</h3>
+                            <p class="product-description">Ofertas especiales y combos familiares</p>
+                            <p class="product-price">Desde $169</p>
+                            <button class="btn btn-secondary" style="width: 100%;">Ver Combos</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pizzas Destacadas -->
+                <div style="margin-top: 3rem;">
+                    <h2 style="text-align: center; margin-bottom: 2rem; color: var(--negro);">🔥 Pizzas Más Vendidas</h2>
+                    <div class="product-grid">
+                        <div class="product-card">
+                            <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+                                🍕
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Pizza Pepperoni</h3>
+                                <p class="product-description">La favorita de todos</p>
+                                <p class="product-price">Desde $99</p>
+                                <button class="btn btn-primary" onclick="window.location.href='pizzas.html'" style="width: 100%;">Ordenar</button>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+                                🍕
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Pizza Margarita</h3>
+                                <p class="product-description">Clásica italiana</p>
+                                <p class="product-price">Desde $89</p>
+                                <button class="btn btn-primary" onclick="window.location.href='pizzas.html'" style="width: 100%;">Ordenar</button>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-image" style="display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+                                🍕
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Pizza Hawaiana</h3>
+                                <p class="product-description">Jamón y piña</p>
+                                <p class="product-price">Desde $99</p>
+                                <button class="btn btn-primary" onclick="window.location.href='pizzas.html'" style="width: 100%;">Ordenar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
